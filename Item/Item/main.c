@@ -1,5 +1,104 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 #include<stdio.h>
+void SListInit(SListNode** pphead)
+{
+	*pphead = (SListNode*)malloc(sizeof(SListNode));
+	(*pphead)->data = 0;
+	(*pphead)->next = NULL;
+}
+
+void SListDestory(SListNode* phead)
+{
+	while (phead->next)
+	{
+		SListEraseAfter(phead);
+	}
+	free(phead);
+}
+
+SListNode* BuyListNode(SLTDataType x)
+{
+	SListNode* res = (SListNode*)malloc(sizeof(SListNode));
+	res->data = x;
+	res->next = NULL;
+	return res;
+}
+
+void SListPushFront(SListNode** pphead, SLTDataType x)//头插
+{
+	SListNode *tmp;
+	/*	if (*pphead == NULL)
+	{
+	*pphead = BuySListNode(x);
+	return;
+	}*/
+	tmp = BuyListNode(x);
+	tmp->next = *pphead;
+}
+void SListPopFront(SListNode** pphead)//头删
+{
+	SListNode* tmp = (*pphead)->next;
+	if (*pphead == NULL)//头删头不能为空
+	{
+		return;
+	}
+	free(*pphead);
+	*pphead = tmp;
+}
+
+void SListInsertAfter(SListNode* pos, SLTDataType x)//后插
+{
+	SListNode* tmp = BuyListNode(x);
+	tmp->next = pos->next;
+	pos->next = tmp;
+}
+void SListEraseAfter(SListNode* pos)//后删
+{
+	SListNode* tmp = pos->next;
+	if (tmp == NULL)
+	{
+		return;
+	}
+	pos->next = tmp->next;
+	free(tmp);
+}
+SListNode* SListFind(SListNode* phead, SLTDataType x)//查找某一个x
+{
+	SListNode* tmp;
+	for (tmp = phead; tmp; tmp = tmp->next)
+	{
+		if (tmp->data == x)
+		{
+			return tmp;
+		}
+	}
+}
+void SListRemove(SListNode** pphead, SLTDataType x)
+{
+	SListNode* tmp;
+	if ((*pphead)->data == x)
+	{
+		SListPopFront(pphead);
+		return;
+	}
+	for (tmp = *pphead; tmp->next; tmp = tmp->next)
+	{
+		if (tmp->next->data == x)
+		{
+			SListEraseAfter(tmp);
+			return;
+		}
+	}
+}
+void SListPrint(SListNode* phead)
+{
+	SListNode* tmp;
+	for (tmp = phead; tmp; tmp = tmp->next)
+	{
+		printf("%d->", tmp->data);
+	}
+	printf("NULL\n");
+}
 typedef struct Node
 {
 	int data;
