@@ -1,5 +1,5 @@
 #define _CRT_SECURE_NO_WARNINGS 1
-#include<stdio.h>
+/*#include<stdio.h>
 void SListInit(SListNode** pphead)
 {
 	*pphead = (SListNode*)malloc(sizeof(SListNode));
@@ -27,11 +27,11 @@ SListNode* BuyListNode(SLTDataType x)
 void SListPushFront(SListNode** pphead, SLTDataType x)//头插
 {
 	SListNode *tmp;
-	/*	if (*pphead == NULL)
-	{
-	*pphead = BuySListNode(x);
-	return;
-	}*/
+	//	if (*pphead == NULL)
+	//{
+	//*pphead = BuySListNode(x);
+	//return;
+	//}
 	tmp = BuyListNode(x);
 	tmp->next = *pphead;
 }
@@ -183,4 +183,142 @@ int main()
 	printf("第%d个节点是%d\n", 3, pGet->data);
 	printf("%d\n", GetLength(&list));
 	Show(&list);
+}*/
+
+#include<stdio.h>
+#include<string.h>
+typedef struct student
+{
+	char no[8];
+	char name[20];
+	int score;
+}Student;
+typedef struct LNode
+{
+	Student data;
+	struct LNode *next;
+}LNode, *LinkList;
+void Init(LinkList list)
+{
+	if (list == NULL)
+	{
+		return;
+	}
+	list->next = NULL;
+}
+LNode *GetNode(Student stu)//生成一个节点
+{
+	LNode * pGet = (LNode *)malloc(sizeof(LNode));
+	strcpy(pGet->data.name, stu.name);
+	strcpy(pGet->data.no, stu.no);
+	//pGet->data.name = stu.name;
+	//pGet->data.no = stu.no;
+	pGet->data.score = stu.score;
+	pGet->next = NULL;
+	return pGet;
+}
+void Insert(LinkList list, Student stu)//尾插
+{
+	LNode *pCur = list;
+	while ((pCur->next) != NULL)
+	{
+		pCur = pCur->next;
+	}
+	LNode *pGet = GetNode(stu);
+	pCur->next = pGet;
+}
+void Show(LinkList list)	//打印
+{
+	LNode *pCur = list->next;
+	while (pCur != NULL)
+	{
+		printf("%s ", pCur->data.no);
+		printf("%10s ", pCur->data.name);
+		printf("%4d ", pCur->data.score);
+		printf("\n");
+		pCur = pCur->next;
+	}
+	printf("\n");
+}
+LNode *Locate(LinkList list, char *name)	//姓名查找
+{
+	LNode *pCur = list->next;
+	//while (pCur->data.name != name)
+	//while (strcpy(pCur->data.name,*name)!=pCur->data.name)
+	while (strcmp(pCur->data.name,name))
+	{
+		pCur = pCur->next;
+	}
+	return pCur;
+}
+LNode *Find(LinkList list, int val)	//第val个节点查找
+{
+	LNode *pCur = list->next;
+	int count = 1;
+	while (count != val)
+	{
+		pCur = pCur->next;
+		count++;
+	}
+	return pCur;
+}
+void Delete(LinkList list, int val)	//删除第val个节点
+{
+	LNode* pCur = list;
+	int count = 1;
+	while (count != val)
+	{
+		pCur = pCur->next;
+		count++;
+	}
+	//LNode *p = pCur;
+	pCur->next = pCur->next->next;
+	//free(p->next);
+}
+int Getlength(LinkList list)	//得到长度
+{
+	int count = 0;
+	LNode* pCur = list->next;
+	while (pCur != NULL)
+	{
+		count++;
+		pCur = pCur->next;
+	}
+	return count;
+}
+void ListInsert(LinkList list, Student stu, int val)//插入到第val个节点
+{
+	LNode *pCur = list;
+	int count = 1;
+	while (count != val)
+	{
+		pCur = pCur->next;
+		count++;
+	}
+	LNode *pGet = GetNode(stu);
+	pGet->next = pCur->next;
+	pCur->next = pGet;
+}
+int main()
+{
+	Student stu1 = { "0210", "zhansan", 70 };
+	Student stu2 = { "0211", "lisi", 78 };
+	Student stu5 = { "0214", "world", 99 };
+	Student stu3 = { "0212", "wangwu", 80 };
+	Student stu4 = { "0213", "hello", 90 };		//定义学生信息
+	LNode list;
+	Init(&list);
+	Insert(&list, stu1);
+	Insert(&list, stu2);
+	Insert(&list, stu3);
+	Insert(&list, stu4);					//插入学生信息
+	LNode* pCur =Find(&list, 3);
+	printf("%s  %d\n", Locate(&list, &stu2.name)->data.no, Locate(&list, &stu2.name)->data.score);//按照姓名查找，返回学号和成绩
+	printf("%s %10s %4d\n", pCur->data.no, pCur->data.name, pCur->data.score);//第val个节点查找，返回学生的信息
+	printf("%d\n", Getlength(&list));	//得到链表的长度
+	ListInsert(&list, stu5,3);//插入到第val个节点
+	Show(&list);
+	Delete(&list, 2);	//删除第val个节点的信息
+	Show(&list);
+	return 0;
 }
