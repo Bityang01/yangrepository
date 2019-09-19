@@ -185,7 +185,7 @@ int main()
 	Show(&list);
 }*/
 
-#include<stdio.h>
+/*#include<stdio.h>
 #include<string.h>
 typedef struct student
 {
@@ -321,4 +321,34 @@ int main()
 	Delete(&list, 2);	//删除第val个节点的信息
 	Show(&list);
 	return 0;
+}*/
+
+#include<stdio.h>
+#include<math.h>
+//给出一个 32 位的有符号整数，你需要将这个整数中每位上的数字进行反转。
+
+int Function(int num)
+{
+	int tmp = 0;
+	int count = 0;
+	int arr[10] = { 0 };
+	int x= (num >> 32) & 1;//存符号位
+	for (int i = 0;num&&( i < 10); i++)
+	{
+		arr[i] = num % 10;//arr[0]=个位；arr[1]=十位；arr[2]=百位
+		num = num / 10;
+		count++;
+	}
+	for (int j = 0; j < 10; j++)
+	{
+		tmp = tmp + arr[j]*pow(10, count-1-j);
+	}
+	tmp = tmp*pow(1, x);
+	return tmp;
+}
+int main()
+{
+	int input = 0;
+	scanf_s("%d", &input);
+	printf("%d\n", Function(input));
 }
