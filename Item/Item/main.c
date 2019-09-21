@@ -323,7 +323,7 @@ int main()
 	return 0;
 }*/
 
-#include<stdio.h>
+/*#include<stdio.h>
 #include<math.h>
 //给出一个 32 位的有符号整数，你需要将这个整数中每位上的数字进行反转。
 
@@ -351,4 +351,29 @@ int main()
 	int input = 0;
 	scanf_s("%d", &input);
 	printf("%d\n", Function(input));
+}*/
+
+#include<stdio.h>
+#include<string.h>
+void Function(int num[],int len)
+{
+	for (int i = 0; i <= len / 2; i++)
+	{
+		if (num[i] != num[len - 1 - i])
+		{
+			printf("不是回文数!\n");
+			return;
+		}
+	}
+	printf("是回文数!\n");
+	return;
 }
+int main()
+{
+	int input[10] = { 0 };
+	int len;
+	scanf_s("%d", &input);
+	len = strlen(input);
+	Function(input,len);
+	}
+
