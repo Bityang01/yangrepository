@@ -436,6 +436,17 @@ Student *LastKNode(Student *list, int val)//找倒数第K个节点
 	}
 	return pCur2;
 }
+void TailList(Student *list, int val)
+{
+	Student *pCur = list;
+	while ((pCur->next) != NULL)
+	{
+		pCur = pCur->next;
+	}
+	Student* pGet = GetNode(val);
+	pGet->next = pCur->next;
+	pCur->next = pGet;
+}
 int main()
 {
 	Student list;
@@ -447,7 +458,10 @@ int main()
 	HeadList(&list, 50);
 	HeadList(&list, 60);
 	HeadList(&list, 70);
-	printf("%d\n", LastKNode(&list, 8)->data);
+	TailList(&list, 80);
+	TailList(&list, 90);
+	TailList(&list, 99);
+	printf("%d\n", LastKNode(&list, 3)->data);
 	Show(&list);
 }
 
