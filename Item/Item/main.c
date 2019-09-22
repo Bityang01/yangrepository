@@ -353,7 +353,7 @@ int main()
 	printf("%d\n", Function(input));
 }*/
 
-#include<stdio.h>
+/*#include<stdio.h>
 #include<string.h>
 void Function(int num[],int len)
 {
@@ -375,5 +375,79 @@ int main()
 	scanf_s("%d", &input);
 	len = strlen(input);
 	Function(input,len);
+	}*/
+
+#include<stdio.h>
+typedef struct Student
+{
+	int data;
+	struct Student * next;
+}Student,*PList;
+void InitList(Student *list)
+{
+	if (list->next == NULL)
+	{
+		return;
 	}
+	list->data = 0;
+	list->next = NULL;
+}
+Student *GetNode(int val)
+{
+	Student *pGet = (Student*)malloc(sizeof(Student));
+	pGet->data = val;
+	pGet->next = NULL;
+	return pGet;
+}
+void HeadList(Student *list, int val)
+{
+	Student *pGet = GetNode(val);
+	pGet->next = list->next;
+	list->next = pGet;
+}
+void Show(Student *list)
+{
+	Student *pCur = list->next;
+	while (pCur != NULL)
+	{
+		printf("%d ", pCur->data);
+		pCur = pCur->next;
+	}
+}
+Student *LastKNode(Student *list, int val)//找倒数第K个节点
+{
+	int count = val-1;
+	Student *pCur1 = list->next;
+	Student *pCur2 = list->next;
+	while (count != 0)
+	{
+		pCur1 = pCur1->next;
+		if (pCur1->next == NULL)
+		{
+			printf("节点不够！");
+			break ;
+		}
+		count--;
+	}
+	while (pCur1->next != NULL)
+	{
+		pCur1 = pCur1->next;
+		pCur2 = pCur2->next;
+	}
+	return pCur2;
+}
+int main()
+{
+	Student list;
+	InitList(&list);
+	HeadList(&list, 10);
+	HeadList(&list, 20);
+	HeadList(&list, 30);
+	HeadList(&list, 40);
+	HeadList(&list, 50);
+	HeadList(&list, 60);
+	HeadList(&list, 70);
+	printf("%d\n", LastKNode(&list, 8)->data);
+	Show(&list);
+}
 
