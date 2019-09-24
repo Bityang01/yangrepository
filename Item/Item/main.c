@@ -377,7 +377,7 @@ int main()
 	Function(input,len);
 	}*/
 
-#include<stdio.h>
+/*#include<stdio.h>
 typedef struct Student
 {
 	int data;
@@ -462,6 +462,56 @@ int main()
 	TailList(&list, 90);
 	TailList(&list, 99);
 	printf("%d\n", LastKNode(&list, 3)->data);
+	Show(&list);
+}*/
+
+#include<stdio.h>
+typedef struct LNode
+{
+	int data;
+	struct LNode *next;
+}LNode,PList;
+void Init(PList *list)
+{
+	if (list->next == NULL)
+	{
+		return;
+	}
+	list->next = NULL;
+}
+LNode *GetNode( int val)
+{
+	LNode *pGet = (LNode *)malloc(sizeof(LNode));
+	pGet->data = val;
+	pGet->next = NULL;
+	return pGet;
+}
+void Tail(PList *list, int val)
+{
+	LNode *pCur = list->next;
+	while (pCur->next != NULL)
+	{
+		pCur = pCur->next;
+	}
+	LNode *pGet = GetNode(val) ;
+	pGet->next = pCur->next ;
+	pCur->next = pGet;
+}
+void Show(PList *list)
+{
+	LNode *pCur = list;
+	while (pCur != NULL)
+	{
+		printf("%d  ", pCur->data);
+		pCur = pCur->next;
+	}
+}
+int main()
+{
+	LNode list;
+	Tail(&list, 10);
+	Tail(&list, 20);
+	Tail(&list, 30);
 	Show(&list);
 }
 
