@@ -537,8 +537,6 @@ int main()
 	printf("%d",Function(arr));
 }*/
 #include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
 int hasGroupsSizeX(int* deck, int deckSize){
 	int count = 0;
 	if (deckSize<2)
