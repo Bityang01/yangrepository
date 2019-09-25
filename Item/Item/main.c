@@ -465,7 +465,7 @@ int main()
 	Show(&list);
 }*/
 
-#include<stdio.h>
+/*#include<stdio.h>
 typedef struct LNode
 {
 	int data;
@@ -513,5 +513,61 @@ int main()
 	Tail(&list, 20);
 	Tail(&list, 30);
 	Show(&list);
+}*/
+
+
+/*#include<stdio.h>
+int Function(int arr)
+{
+	//int len;
+	//len = sizeof(arr) / sizeof(arr[0]);
+	//printf("%d", len);
+	if (arr == 10)
+	{
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
+}
+int main()
+{
+	int arr = 10;
+	printf("%d",Function(arr));
+}*/
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+int hasGroupsSizeX(int* deck, int deckSize){
+	int count = 0;
+	if (deckSize<2)
+	{
+		return 0;
+	}
+	else
+	{
+		for (int i = 0; i <= 100; i++)//Ä¸Êý
+		{
+			for (int j = 0; j <= 100; j++)//×ÓÊý
+			{
+				if (deck[i] == deck[j])
+				{
+					count++;
+				}
+			}
+			if (count%deckSize != 0)
+			{
+				return 0;
+			}
+			count = 0;
+		}
+		return 1;
+	}
+}
+int main()
+{
+	int arr[] = { 1, 2, 3, 4, 5, 6, 6, 5, 4, 3, 2, 1 };
+	printf("%d",hasGroupsSizeX(arr, 2));
 }
 
