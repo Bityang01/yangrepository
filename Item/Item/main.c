@@ -536,7 +536,7 @@ int main()
 	int arr = 10;
 	printf("%d",Function(arr));
 }*/
-#include<stdio.h>
+/*#include<stdio.h>
 int hasGroupsSizeX(int* deck, int deckSize){
 	int count = 0;
 	if (deckSize<2)
@@ -567,5 +567,17 @@ int main()
 {
 	int arr[] = { 1, 2, 3, 4, 5, 6, 6, 5, 4, 3, 2, 1 };
 	printf("%d",hasGroupsSizeX(arr, 2));
+}*/
+
+int game(int* guess, int guessSize, int* answer, int answerSize){
+	int count = 0;
+	for (int i = 0; i<guessSize; i++)
+	{
+		if (guess[i] == answer[i])
+		{
+			count++;
+		}
+	}
+	return count;
 }
 
