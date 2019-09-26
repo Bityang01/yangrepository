@@ -569,7 +569,7 @@ int main()
 	printf("%d",hasGroupsSizeX(arr, 2));
 }*/
 
-int game(int* guess, int guessSize, int* answer, int answerSize){
+/*int game(int* guess, int guessSize, int* answer, int answerSize){
 	int count = 0;
 	for (int i = 0; i<guessSize; i++)
 	{
@@ -579,5 +579,30 @@ int game(int* guess, int guessSize, int* answer, int answerSize){
 		}
 	}
 	return count;
+}*/
+
+/*#include<stdio.h>
+int main()
+{
+	char J[] = "HelloWorld";
+	printf("%c  ", *J);
+	printf("%s  ", J);
+	printf("%c  ", J[0]);
+}*/
+
+int numJewelsInStones(char * J, char * S){
+	int count = 0;
+	for (int i = 0; i<(int)strlen(J); i++)
+	{
+		for (int j = 0; j<(int)strlen(S); j++)
+		{
+			if (*(J + i) == *(S + j))
+			{
+				count++;
+			}
+		}
+	}
+	return count;
 }
+
 
