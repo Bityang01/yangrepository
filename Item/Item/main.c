@@ -590,7 +590,7 @@ int main()
 	printf("%c  ", J[0]);
 }*/
 
-int numJewelsInStones(char * J, char * S){
+/*int numJewelsInStones(char * J, char * S){
 	int count = 0;
 	for (int i = 0; i<(int)strlen(J); i++)
 	{
@@ -603,6 +603,36 @@ int numJewelsInStones(char * J, char * S){
 		}
 	}
 	return count;
+}*/
+
+/*#include<stdio.h>
+char * defangIPaddr(char * address)
+{
+	for (char i = 0; i < 15; i++)
+	{
+			if (*(address + i) == '.')
+			{
+				*(address + i) = '[.]';
+			}
+	}
+	return address;
+}
+int main()
+{
+	char address = "120.345.655.342";
+	printf("%s\n",defangIPaddr(&address));
+}*/
+/**
+* Definition for singly-linked list.
+* struct ListNode {
+*     int val;
+*     struct ListNode *next;
+* };
+*/
+//删除节点，只给删除的节点
+void deleteNode(struct ListNode* node) {
+	node->val = node->next->val;
+	node->next = node->next->next;
 }
 
 
