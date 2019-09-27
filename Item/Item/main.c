@@ -630,9 +630,22 @@ int main()
 * };
 */
 //删除节点，只给删除的节点
-void deleteNode(struct ListNode* node) {
+/*void deleteNode(struct ListNode* node) {
 	node->val = node->next->val;
 	node->next = node->next->next;
+}*/
+
+
+//大写转小写
+char * toLowerCase(char * str){
+	for (int i = 0; i<strlen(str); i++)
+	{
+		if ((str[i] >= 'A') && (str[i] <= 'Z'))
+		{
+			str[i] = (char)(str[i] + 32);
+		}
+	}
+	return str;
 }
 
 
