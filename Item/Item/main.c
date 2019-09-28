@@ -633,7 +633,7 @@ int main()
 /*void deleteNode(struct ListNode* node) {
 	node->val = node->next->val;
 	node->next = node->next->next;
-}*/
+}
 
 
 //��дתСд
@@ -646,6 +646,26 @@ char * toLowerCase(char * str){
 		}
 	}
 	return str;
+}
+
+/**
+* Definition for singly-linked list.
+* struct ListNode {
+*     int val;
+*     struct ListNode *next;
+* };
+*/
+
+
+struct ListNode* middleNode(struct ListNode* head){
+	struct ListNode * pFast = head;
+	struct ListNode * pSlow = head;
+	while ((pFast) != NULL && (pFast->next != NULL))
+	{
+		pSlow = pSlow->next;
+		pFast = pFast->next->next;
+	}
+	return pSlow;
 }
 
 
