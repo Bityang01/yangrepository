@@ -695,7 +695,7 @@ struct ListNode* mergeTwoLists(struct ListNode* l1, struct ListNode* l2){
 }*/
 
 //汉明距离
-int hammingDistance(int x, int y){
+/*int hammingDistance(int x, int y){
 	int count = 0;
 	for (int i = 0; i<32; i++)
 	{
@@ -705,6 +705,57 @@ int hammingDistance(int x, int y){
 		}
 	}
 	return count;
+}*/
+
+
+
+//查找两链表相同节点
+/**
+* Definition for singly-linked list.
+* struct ListNode {
+*     int val;
+*     struct ListNode *next;
+* };
+*/
+struct ListNode *getIntersectionNode(struct ListNode *headA, struct ListNode *headB) {
+	int countA = 0;
+	int countB = 0;
+	int tmp = 0;
+	struct ListNode* pCur1 = headA;
+	struct ListNode* pCur2 = headB;
+	while (pCur1->next != NULL)
+	{
+		countA++;
+		pCur1 = pCur1->next;
+	}
+	while (pCur2->next != NULL)
+	{
+		countB++;
+		pCur2 = pCur2->next;
+	}
+	tmp = abs(countA - countB);
+	if (countA>countB)
+	{
+		while (tmp)
+		{
+			pCur1 = pCur1->next;
+			tmp--;
+		}
+	}
+	else
+	{
+		while (tmp)
+		{
+			pCur2 = pCur2->next;
+			tmp--;
+		}
+	}
+	while ((pCur1->next) != (pCur2->next))
+	{
+		pCur1 = pCur1->next;
+		pCur2 = pCur2->next;
+	}
+	return pCur1;
 }
 
 
