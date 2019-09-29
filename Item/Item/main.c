@@ -674,7 +674,7 @@ struct ListNode* middleNode(struct ListNode* head){
 *     int val;
 *     struct ListNode *next;
 * };
-*/
+
 
 
 //两有序链表合并，合并链表从大到小输出
@@ -692,5 +692,19 @@ struct ListNode* mergeTwoLists(struct ListNode* l1, struct ListNode* l2){
 		l2->next = mergeTwoLists(l1, l2->next);
 		return l2;
 	}
+}*/
+
+//汉明距离
+int hammingDistance(int x, int y){
+	int count = 0;
+	for (int i = 0; i<32; i++)
+	{
+		if (((x >> i) & 1) != ((y >> i) & 1))
+		{
+			count++;
+		}
+	}
+	return count;
 }
+
 
