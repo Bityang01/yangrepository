@@ -779,8 +779,29 @@ LNode * GetNode(int val)
 	pGet->next = NULL;
 	return pGet;
 }
+void Head(List *list, int val)
+{
+	LNode *pGet = GetNode(val);
+	pGet->next = list->next;
+	list->next = pGet;
+}
+void Show(List *list)
+{
+	LNode *pCur = list;
+	while (pCur->next != NULL)
+	{
+		printf("%d ", pCur->val);
+		pCur = pCur->next;
+	}
+}
 int main()
 {
-
+	LNode list;
+	Init(&list);
+	Head(&list, 10);
+	Head(&list, 20);
+	Head(&list, 30);
+	Head(&list, 40);
+	Show(&list);
 }
 
