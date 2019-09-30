@@ -716,7 +716,7 @@ struct ListNode* mergeTwoLists(struct ListNode* l1, struct ListNode* l2){
 *     int val;
 *     struct ListNode *next;
 * };
-*/
+
 struct ListNode *getIntersectionNode(struct ListNode *headA, struct ListNode *headB) {
 	int countA = 0;
 	int countB = 0;
@@ -756,6 +756,31 @@ struct ListNode *getIntersectionNode(struct ListNode *headA, struct ListNode *he
 		pCur2 = pCur2->next;
 	}
 	return pCur1;
-}
+}*/
 
+#include<stdio.h>
+typedef struct LNode
+{
+	int val;
+	struct LNode* next;
+}LNode,List;
+void Init(List *list)
+{
+	if (list->next == NULL)
+	{
+		return;
+	}
+	list->next = NULL;
+}
+LNode * GetNode(int val)
+{
+	LNode * pGet =(LNode*)malloc(sizeof(LNode));
+	pGet->val = val;
+	pGet->next = NULL;
+	return pGet;
+}
+int main()
+{
+
+}
 
