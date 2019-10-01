@@ -806,6 +806,17 @@ void Tail(List *list, int val)
 	pCur->next = pGet;
 	pGet->next = NULL;
 }
+void Delete(List *list, int val)
+{
+	int count = 1;
+	LNode *pCur = list;
+	while (count != val)
+	{
+		pCur = pCur->next;
+		count++;
+	}
+	pCur = pCur->next->next;
+}
 int main()
 {
 	LNode list;
@@ -815,6 +826,7 @@ int main()
 	Head(&list, 30);
 	Head(&list, 40);
 	Tail(&list, 50);
+	Delete(&list, 3);
 	Show(&list);
 }
 
