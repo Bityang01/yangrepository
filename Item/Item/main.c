@@ -770,6 +770,7 @@ void Init(List *list)
 	{
 		return;
 	}
+	list->val = 0;
 	list->next = NULL;
 }
 LNode * GetNode(int val)
@@ -788,11 +789,22 @@ void Head(List *list, int val)
 void Show(List *list)
 {
 	LNode *pCur = list;
-	while (pCur->next != NULL)
+	while (pCur != NULL)
 	{
 		printf("%d ", pCur->val);
 		pCur = pCur->next;
 	}
+}
+void Tail(List *list, int val)
+{
+	LNode* pCur = list;
+	LNode *pGet = (LNode *)malloc(sizeof(LNode));
+	while (pCur->next != NULL)
+	{
+		pCur = pCur->next;
+	}
+	pCur->next = pGet;
+	pGet->next = NULL;
 }
 int main()
 {
@@ -802,6 +814,7 @@ int main()
 	Head(&list, 20);
 	Head(&list, 30);
 	Head(&list, 40);
+	Tail(&list, 50);
 	Show(&list);
 }
 
