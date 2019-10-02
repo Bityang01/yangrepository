@@ -817,6 +817,15 @@ void Delete(List *list, int val)
 	}
 	pCur = pCur->next->next;
 }
+void Showlist(List *list)
+{
+	LNode * pCur = list;
+	while (pCur->next != NULL)
+	{
+		printf("%d  ", pCur->val);
+		pCur = pCur->next;
+	}
+}
 int main()
 {
 	LNode list;
@@ -828,6 +837,5 @@ int main()
 	Tail(&list, 50);
 	Delete(&list, 3);
 	Show(&list);
-	printf("HelloWorld");
 }
 
