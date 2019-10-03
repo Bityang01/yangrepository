@@ -839,7 +839,7 @@ int main()
 	Show(&list);
 }*/
 
-#include<stdio.h>
+/*#include<stdio.h>
 void Function(int * heights,int heightsSize)
 {
 	int tmp = 0;
@@ -899,4 +899,59 @@ int heightChecker(int* heights, int heightsSize){
 		}
 	}
 	return count;
+}*/
+
+#include<stdio.h>
+void Function(int * arr,int ASize)
+{
+	int *B = (int *)malloc(sizeof(int)*ASize);
+	int tmp = 0;
+	for (int i = 0; i<ASize; i++)
+	{
+		if (((arr[i] >>32)&1)==1)
+		{
+			tmp = abs(arr[i]);
+		}
+		B[i] = pow(tmp, 2);
+	}
+	for (int k = 0; k < ASize; k++)
+	{
+		printf("%d ", B[k]);
+	}
+}
+int* sortedSquares(int* A, int ASize){
+	int B[10000] = { 0 };
+	memcpy(B, A, sizeof(int)*ASize);
+	int tmp = 0;
+	for (int i = 0; i<ASize; i++)
+	{
+		if (((A[i] >> 31) & 1) != 0)
+		{
+			tmp = abs(A[i]);
+		}
+		B[i] = pow(tmp, 2);
+	}
+	for (int j = 0; j<ASize; j++)
+	{
+		for (int k = j; k<ASize; k++)
+		{
+			if (B[j]>B[k])
+			{
+				tmp = B[j];
+				B[j] = B[k];
+				B[k] = tmp;
+			}
+		}
+	}
+	for (int k = 0; k < ASize; k++)
+	{
+		printf("%d ", B[k]);
+	}
+	return B;
+}
+int main()
+{
+	int arr[] = { -1, -3, 0, 5, 10 };
+	//Function;
+	sortedSquares(&arr, 5);
 }
