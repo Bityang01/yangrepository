@@ -758,7 +758,7 @@ struct ListNode *getIntersectionNode(struct ListNode *headA, struct ListNode *he
 	return pCur1;
 }*/
 
-#include<stdio.h>
+/*#include<stdio.h>
 typedef struct LNode
 {
 	int val;
@@ -837,5 +837,66 @@ int main()
 	Tail(&list, 50);
 	Delete(&list, 3);
 	Show(&list);
+}*/
+
+#include<stdio.h>
+void Function(int * heights,int heightsSize)
+{
+	int tmp = 0;
+	int *arr = heights;
+	for (int i = 0; i<heightsSize; i++)
+	{
+		for (int j = i; j<heightsSize; j++)
+		{
+			if (arr[i]>arr[j])
+			{
+				tmp = arr[i];
+				arr[i] = arr[j];
+				arr[j] = tmp;
+			}
+		}
+	}
+	for (int k = 0; k < heightsSize; k++)
+	{
+		printf("%d ", arr[k]);
+	}
+	printf("\n");
+	for (int k = 0; k < heightsSize; k++)
+	{
+		printf("%d ", heights[k]);
+	}
+}
+int main()
+{
+	int heights[] = { 1, 2, 5, 7, 5, 3, 4 };
+	Function(&heights,7);
 }
 
+
+//leetcode对一个数组排序后和原数组比较有多少位不同
+int heightChecker(int* heights, int heightsSize){
+	int count = 0;
+	int tmp = 0;
+	int arr[100] = { 0 };
+	memcpy(arr, heights, sizeof(int)*heightsSize);
+	for (int i = 0; i<heightsSize; i++)
+	{
+		for (int j = i; j<heightsSize; j++)
+		{
+			if (arr[i]>arr[j])
+			{
+				tmp = arr[i];
+				arr[i] = arr[j];
+				arr[j] = tmp;
+			}
+		}
+	}
+	for (int k = 0; k<heightsSize; k++)
+	{
+		if (heights[k] != arr[k])
+		{
+			count++;
+		}
+	}
+	return count;
+}
