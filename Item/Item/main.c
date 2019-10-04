@@ -1009,5 +1009,6 @@ int* selfDividingNumbers(int left, int right, int* returnSize) {
 		}
 		left++;
 	}
+
 	return a;
 }
