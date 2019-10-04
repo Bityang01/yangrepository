@@ -901,7 +901,7 @@ int heightChecker(int* heights, int heightsSize){
 	return count;
 }*/
 
-#include<stdio.h>
+/*#include<stdio.h>
 void Function(int * arr,int ASize)
 {
 	int *B = (int *)malloc(sizeof(int)*ASize);
@@ -954,4 +954,60 @@ int main()
 	int arr[] = { -1, -3, 0, 5, 10 };
 	//Function;
 	sortedSquares(&arr, 5);
+}*/
+
+
+
+//×Ô³ýÊý
+/**
+* Note: The returned array must be malloced, assume caller calls free().
+
+int* selfDividingNumbers(int left, int right, int* returnSize){
+int* a =malloc(sizeof(int)*(right - left + 1));
+int tmp=0;
+*returnSize=0;
+int count=0;
+if(left>0)
+{
+for(int i=left;i<right;left++,i++)
+{
+a[count]=i;
+count++;
+while(i)
+{
+tmp=i%10;
+if(tmp==0||(left%tmp)!=0)
+{
+count--;
+break;
+}
+i=i/10;
+}
+}
+return a;
+}
+return NULL;
+} */
+int* selfDividingNumbers(int left, int right, int* returnSize) {
+	int* a = calloc(right - left + 1, sizeof(int));
+	int i = 0;
+	*returnSize = 0;
+	while (left <= right){
+		int flag = 0, temp = left;
+		while (temp > 0){
+			int b = temp % 10;
+			if (b == 0 || left % b != 0){
+				flag = 1;
+				break;
+			}
+			temp = temp / 10;
+		}
+		if (flag == 0){
+			a[i] = left;
+			i++;
+			(*returnSize)++;
+		}
+		left++;
+	}
+	return a;
 }
