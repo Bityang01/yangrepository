@@ -1013,7 +1013,7 @@ int* selfDividingNumbers(int left, int right, int* returnSize) {
 	return a;
 } */
 
-#include<stdio.h>
+/*#include<stdio.h>
 int* twoSum(int* nums, int numsSize, int target, int* returnSize){
 	//int *arr = malloc(sizeof(int) * 2);
 	// int count=0;
@@ -1037,4 +1037,30 @@ int main()
 	int returnSize[] = { 0 };
 	twoSum(&arr, 4,9,&returnSize);
 	printf("%d %d\n", returnSize[0], returnSize[1]);
+}*/
+
+
+
+
+//leetcode两数之和
+/**
+* Note: The returned array must be malloced, assume caller calls free().
+*/
+int* twoSum(int* nums, int numsSize, int target, int* returnSize){
+	int* arr = malloc(sizeof(int) * 2);
+	*returnSize = 2;
+	// int count=0;
+	for (int i = 0; i<numsSize; i++)
+	{
+		for (int j = i + 1; j<numsSize; j++)
+		{
+			if ((nums[i] + nums[j]) == target)
+			{
+				arr[0] = i;
+				arr[1] = j;
+
+			}
+		}
+	}
+	return arr;
 }
