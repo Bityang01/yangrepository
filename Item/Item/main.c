@@ -1045,7 +1045,7 @@ int main()
 //leetcode两数之和
 /**
 * Note: The returned array must be malloced, assume caller calls free().
-*/
+
 int* twoSum(int* nums, int numsSize, int target, int* returnSize){
 	int* arr = malloc(sizeof(int) * 2);
 	*returnSize = 2;
@@ -1063,4 +1063,71 @@ int* twoSum(int* nums, int numsSize, int target, int* returnSize){
 		}
 	}
 	return arr;
+}*/
+
+
+
+/*int peakIndexInMountainArray(int* A, int ASize){
+	int count = 0;
+	while (ASize >= 3)
+	{
+		while (A[0]<A[1])
+		{
+			for (int i = 0; i<ASize; i++)
+			{
+				if (A[i]<A[i + 1])
+				{
+					count = i + 1;
+				}
+				else
+				{
+					break;
+				}
+			}
+			for (int j = count; j<ASize; j++)
+			{
+				if (A[j]>A[j + 1])
+				{
+					if (j == ASize - 1)
+					{
+						return count;
+					}
+				}
+			}
+		}
+	}
+}*/
+
+#include<stdio.h>
+
+int Function(int* A, int ASize){
+	for (int i = 0; i<ASize; i++)
+	{
+		if (A[i]>A[i + 1])
+		{
+			return i;
+		}
+	}
 }
+
+int main()
+{
+	int arr[] = { 0, 2, 1, 0 };
+	printf("%d \n", Function(&arr,4));
+}
+
+
+//leetcode山脉数组的峰顶索引
+int peakIndexInMountainArray(int* A, int ASize){
+	int count = 0;
+	for (int i = 0; i<ASize - 1; i++)
+	{
+		if (A[i]>A[i + 1])
+		{
+			count = i;
+			break;
+		}
+	}
+	return count;
+}
+
