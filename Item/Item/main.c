@@ -1098,7 +1098,7 @@ int* twoSum(int* nums, int numsSize, int target, int* returnSize){
 	}
 }*/
 
-#include<stdio.h>
+/*#include<stdio.h>
 
 int Function(int* A, int ASize){
 	for (int i = 0; i<ASize; i++)
@@ -1131,3 +1131,48 @@ int peakIndexInMountainArray(int* A, int ASize){
 	return count;
 }
 
+*/
+
+
+
+
+int findComplement(int num){
+	int arr[32] = { 0 };
+	int sum = 0;
+	for (int i = 0; i<32; i++)
+	{
+		arr[i] = (num >> i) & 1;
+	}
+	for (int j = 0; j<32; j++)
+	{
+		if (arr[j] == 0)
+		{
+			arr[j] = 1;
+		}
+		else
+		{
+			arr[j] = 0;
+		}
+	}
+	for (int k = 0; k<3; k++)
+	{
+		if (arr[k] == 1)
+		{
+			sum = sum + pow(2, k);
+		}
+	}
+	return sum;
+}
+
+
+//leetcodeÊý×ÖµÄ²¹Êý
+int findComplement(int num){
+	int tmp = 0;
+	int count = num;
+	while (count>0)
+	{
+		count = count >> 1;
+		tmp = (tmp << 1) | 1;
+	}
+	return num^tmp;
+}
