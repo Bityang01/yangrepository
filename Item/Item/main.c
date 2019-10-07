@@ -1136,7 +1136,7 @@ int peakIndexInMountainArray(int* A, int ASize){
 
 
 
-int findComplement(int num){
+/*int findComplement(int num){
 	int arr[32] = { 0 };
 	int sum = 0;
 	for (int i = 0; i<32; i++)
@@ -1175,4 +1175,71 @@ int findComplement(int num){
 		tmp = (tmp << 1) | 1;
 	}
 	return num^tmp;
+}*/
+
+
+#include<stdio.h>
+
+
+/**
+* Note: The returned array must be malloced, assume caller calls free().
+*/
+int* sortArrayByParity(int* A, int ASize, int* returnSize){
+	int tmp = 0;
+	//int j=ASize-1;
+	*returnSize = ASize;
+	for (int i = 0; i<ASize; i++)
+	{
+		if ((A[i]) % 2 != 0)
+		{
+			for (int j = ASize - 1; j>0; j--)
+			{
+				if ((A[j] % 2) == 0)
+				{
+					tmp = A[i];
+					A[i] = A[j];
+					A[j] = tmp;
+					break;
+				}
+			}
+		}
+	}
+	return A;
 }
+
+int main()
+{
+	int arr[] = { 3, 1, 2, 4 };
+	int aar1[] = { 0 };
+	sortArrayByParity(&arr, 4, &aar1);
+}
+
+
+
+//leetcode°´ÆæÅ¼ÅÅÐòÊý×é
+/**
+* Note: The returned array must be malloced, assume caller calls free().
+*/
+int* sortArrayByParity(int* A, int ASize, int* returnSize){
+	int tmp = 0;
+	//int j=ASize-1;
+	*returnSize = ASize;
+	for (int i = 0; i<ASize; i++)
+	{
+		if ((A[i]) % 2 != 0)
+		{
+			for (int j = ASize - 1; j>i; j--)
+			{
+				if ((A[j] % 2) == 0)
+				{
+					tmp = A[i];
+					A[i] = A[j];
+					A[j] = tmp;
+					break;
+				}
+			}
+		}
+	}
+	return A;
+}
+
