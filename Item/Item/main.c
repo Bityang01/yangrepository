@@ -1178,12 +1178,12 @@ int findComplement(int num){
 }*/
 
 
-#include<stdio.h>
+/*#include<stdio.h>
 
 
 /**
 * Note: The returned array must be malloced, assume caller calls free().
-*/
+
 int* sortArrayByParity(int* A, int ASize, int* returnSize){
 	int tmp = 0;
 	//int j=ASize-1;
@@ -1219,7 +1219,7 @@ int main()
 //leetcode°´ÆæÅ¼ÅÅÐòÊý×é
 /**
 * Note: The returned array must be malloced, assume caller calls free().
-*/
+*
 int* sortArrayByParity(int* A, int ASize, int* returnSize){
 	int tmp = 0;
 	//int j=ASize-1;
@@ -1241,5 +1241,30 @@ int* sortArrayByParity(int* A, int ASize, int* returnSize){
 		}
 	}
 	return A;
-}
+}*/
 
+
+
+
+/**
+* Note: The returned array must be malloced, assume caller calls free().
+*/
+char ** findWords(char ** words, int wordsSize, int* returnSize){
+	char *arr1 = malloc(sizeof(char)*wordsSize);
+	*returnSize = 0;
+	int arr[26] = { 1, 2, 2, 1, 0, 1, 1, 1, 0, 1, 1, 1, 2, 2, 0, 0, 0, 0, 1, 0, 0, 2, 0, 2, 0, 2 };
+	for (int i = 0; i<wordsSize; i++)
+	{
+		for (int j = 0; j<strlen((*words)[i]); j++)
+		{
+			if ((*(*words) + j)>'A'&&*((*words) + j)<'Z')
+			{
+				(*(*words) + j) += 32;
+			}
+			if (arr[(*(*words) + j) - 'a'] != arr[(*(*words)) - 'a'])
+			{
+				break;
+			}
+		}
+	}
+}
