@@ -1248,7 +1248,7 @@ int* sortArrayByParity(int* A, int ASize, int* returnSize){
 
 /**
 * Note: The returned array must be malloced, assume caller calls free().
-*/
+
 char ** findWords(char ** words, int wordsSize, int* returnSize){
 	char *arr1 = malloc(sizeof(char)*wordsSize);
 	*returnSize = 0;
@@ -1267,4 +1267,52 @@ char ** findWords(char ** words, int wordsSize, int* returnSize){
 			}
 		}
 	}
+}*/
+
+
+
+
+/**
+* Note: The returned array must be malloced, assume caller calls free().
+*/
+int* intersection(int* nums1, int nums1Size, int* nums2, int nums2Size, int* returnSize){
+	int count = 0;
+	int tmp = 0;
+	int *arr = malloc(sizeof(int)*nums1Size);
+	int *arr1 = malloc(sizeof(int)*nums1Size);
+	for (int i = 0; i<nums1Size; i++)
+	{
+		for (int j = 0; j<nums2Size; j++)
+		{
+			if (nums1[i] == nums2[j])
+			{
+				arr[count] = nums1[i];
+				count++;
+			}
+		}
+	}
+	for (int k = 0; k<nums1Size; k++)//arr1
+	{
+		for (int a = 0; a<nums1Size; a++)//arr
+		{
+			if (arr1[k] == arr[a])
+			{
+				break;
+			}
+			else
+			{
+				arr1[k] = arr[a];
+			}
+		}
+	}
+	for (int b = 0; b<nums1Size; b++)
+	{
+		if (arr1[b] != 0)
+		{
+			tmp++;
+		}
+	}
+	*returnSize = tmp;
+	return arr1;
 }
+
