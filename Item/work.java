@@ -2,7 +2,61 @@ import java.util.Scanner;
 import java.lang.Math;
 public 	class work{
 	public static void main(String[] args){
-		for(int i=1;i<101;i++)
+		double sum=0D;
+		for(double i=1;i<101;i++)
+		{
+			if(i%2==0)
+			{
+				sum=sum+((-1)*(1/i));
+			}else{
+				sum=sum+(1/i);
+			}
+		}
+		System.out.println(sum);
+	
+		
+		
+		//求两个数的最大公约数
+		/*Scanner in=new Scanner(System.in);
+		int number1=in.nextInt();
+		int number2=in.nextInt();
+		int numberMax=(number1>number2)?number1:number2;
+		int numberMin=(number1>number2)?number2:number1;
+		for(int i=numberMin;i>0;i--)
+		{
+			if((number1%i==0)&&(number2%i)==0)
+			{
+				System.out.println("最大公约数是"+i);
+				break;
+			}
+		}
+		*/
+		
+		//乘法口诀表
+		/*for(int i=1;i<10;i++)
+		{
+			for(int j=1;j<=i;j++)
+			{
+				System.out.print(j+"*"+i+"="+i*j+"   ");
+			}
+			System.out.print("\n");
+		}
+		*/
+		
+		//1000到2000之间的闰年
+		/*for(int year=1000;year<2001;year++)
+		{
+			if(((year%4==0)&&(year%100!=0))||(year%400==0))
+			{
+				System.out.println(year+"是闰年");
+			}else{
+				System.out.println(year+"不是闰年");
+			}
+		}
+		*/
+		
+		//1-100之间的素数
+		/*for(int i=1;i<101;i++)
 		{
 			int count=0;
 			for(int j=2;j<=Math.sqrt(i);j++)
@@ -19,7 +73,7 @@ public 	class work{
 				System.out.println(i+"不是素数");
 			}
 		}
-		
+		*/
 		
 		/*//给定一个数判断是否是素数
 		int count=0;
