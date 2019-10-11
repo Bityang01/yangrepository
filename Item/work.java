@@ -2,7 +2,118 @@ import java.util.Scanner;
 import java.lang.Math;
 public 	class work{
 	public static void main(String[] args){
-		double sum=0D;
+		
+		//输出一个整数的每一位
+		/*Scanner in=new Scanner(System.in);
+		int number=in.nextInt();
+		while(number!=0)
+		{
+			System.out.println(number%10);
+			number=number/10;
+		}
+		*/
+		
+		//二进制中 1 的个数
+		/*int count=0;
+		int[] arr;
+		arr =new int[32];
+		Scanner in=new Scanner(System.in);
+		int number=in.nextInt();	
+		for(int i=0;i<32;i++)
+		{
+			arr[i]=(number>>i)&1;
+			if(arr[i]==1)
+			{
+				count++;
+			}
+		}
+		System.out.println(count);
+		*/
+		
+		//获取一个数二进制序列中所有的偶数位和奇数位
+		/*int[] arr;
+		arr =new int[32];
+		Scanner in=new Scanner(System.in);
+		int number=in.nextInt();	
+		for(int i=0;i<32;i++)
+		{
+			arr[i]=(number>>i)&1;
+		}
+		for(int j=0;j<32;j++)
+		{
+			System.out.print(arr[j]);
+			j++;
+		}
+		System.out.println(" ");
+		for(int j=1;j<32;j++)
+		{
+			System.out.print(arr[j]);
+			j++;
+		}
+		*/
+		
+		
+		//模拟三次密码输入的场景
+		/*int count=3;
+		System.out.println("请设置3位数字密码");
+		Scanner in=new Scanner(System.in);
+		int passWord=in.nextInt();
+		while(count!=0)
+		{
+			System.out.println("请输入3位数字密码");
+			Scanner in1=new Scanner(System.in);
+			int number=in.nextInt();
+			if(number==passWord)
+			{
+				System.out.println("输入正确，登录成功");
+				break;
+			}
+			count--;
+		}
+		*/
+		
+		
+		//求出0～999之间的所有“水仙花数”并输出
+		/*int[] arr={0};
+		int tmp=0;
+		for(int i=100;i<1000;i++)
+		{
+			tmp=i;
+			double sum=0;
+			//int count=0;
+			while(tmp!=0)
+			{
+				//arr[count]=tmp%10;
+				sum=sum+(tmp%10)*(tmp%10)*(tmp%10);
+				//count++;
+				tmp=tmp/10;
+			}
+			if(sum==i)
+			{
+				System.out.println(i);
+			}
+		}
+		*/
+		
+		
+		// 1到 100 的所有整数中出现多少个数字9
+		/*int count=0;
+		for(int i=1;i<101;i++)
+		{
+			if(i%10==9)
+			{
+				count++;
+			}
+			if(i/10==9)
+			{
+				count++;
+			}
+		}
+		System.out.println(count);
+		*/
+		
+		//计算1/1-1/2+1/3-1/4+1/5 …… + 1/99 - 1/100 的值
+		/*double sum=0D;
 		for(double i=1;i<101;i++)
 		{
 			if(i%2==0)
@@ -13,7 +124,7 @@ public 	class work{
 			}
 		}
 		System.out.println(sum);
-	
+		*/
 		
 		
 		//求两个数的最大公约数

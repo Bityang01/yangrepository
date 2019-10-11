@@ -1274,7 +1274,7 @@ char ** findWords(char ** words, int wordsSize, int* returnSize){
 
 /**
 * Note: The returned array must be malloced, assume caller calls free().
-*/
+
 int* intersection(int* nums1, int nums1Size, int* nums2, int nums2Size, int* returnSize){
 	int count = 0;
 	int tmp = 0;
@@ -1314,5 +1314,29 @@ int* intersection(int* nums1, int nums1Size, int* nums2, int nums2Size, int* ret
 	}
 	*returnSize = tmp;
 	return arr1;
-}
+}*/
 
+
+
+#include<stdio.h>
+int main()
+{
+	int arr[] = { 0 };
+	for (int i = 0; i < 1000; i++)
+	{
+		int tmp = i;
+		double sum = 0;
+		int count = 0;
+		while (tmp != 0)
+		{
+			arr[count] = tmp% 10;
+			sum = sum + arr[count] * arr[count] * arr[count];
+			count++;
+			tmp = tmp / 10;
+		}
+		if (sum == i)
+		{
+			printf("%d \n",i);
+		}
+	}
+}
