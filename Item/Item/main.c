@@ -1318,7 +1318,7 @@ int* intersection(int* nums1, int nums1Size, int* nums2, int nums2Size, int* ret
 
 
 
-#include<stdio.h>
+/*#include<stdio.h>
 int main()
 {
 	int arr[] = { 0 };
@@ -1339,4 +1339,47 @@ int main()
 			printf("%d \n",i);
 		}
 	}
+}*/
+
+
+bool uniqueOccurrences(int* arr, int arrSize){
+	int *arr1 = malloc(sizeof(int)*arrSize);
+	int ret = 0;
+	for (int i = 0; i<arrSize; i++)
+	{
+		int tmp = 0;
+		int count = 0;
+		for (int k = i; (i != 0) && (k>0); k--)
+		{
+			if (arr[i] == arr[k - 1])
+			{
+				tmp = 1;
+				break;
+			}
+		}
+		if (tmp == 1)
+		{
+			continue;
+		}
+		for (int j = i; j<arrSize; j++)
+		{
+			if (arr[i] == arr[j])
+			{
+				count++;
+			}
+		}
+		arr1[ret] = count;
+		ret++;
+	}
+	for (int a = 0; a<ret; a++)
+	{
+		for (int b = a; b<ret; b++)
+		{
+			if (arr1[a] == arr1[b])
+			{
+				return false;
+			}
+		}
+	}
+	return true;
 }
