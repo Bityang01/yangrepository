@@ -1385,7 +1385,7 @@ int main()
 }*/
 
 //leetcode给定一个非负整数 num，反复将各个位上的数字相加，直到结果为一位数
-int addDigits(int num){
+/*int addDigits(int num){
 	int sum = num;
 	while (sum >= 10)
 	{
@@ -1398,4 +1398,16 @@ int addDigits(int num){
 		}
 	}
 	return sum;
+}*/
+
+//斐波那契数
+int fib(int N){
+	if (N == 0)
+		return 0;
+	if (N == 1 || N == 2)
+		return 1;
+	else
+	{
+		return fib(N - 1) + fib(N - 2);
+	}
 }
