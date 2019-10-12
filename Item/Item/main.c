@@ -1342,7 +1342,7 @@ int main()
 }*/
 
 
-bool uniqueOccurrences(int* arr, int arrSize){
+/*bool uniqueOccurrences(int* arr, int arrSize){
 	int *arr1 = malloc(sizeof(int)*arrSize);
 	int ret = 0;
 	for (int i = 0; i<arrSize; i++)
@@ -1382,4 +1382,20 @@ bool uniqueOccurrences(int* arr, int arrSize){
 		}
 	}
 	return true;
+}*/
+
+//leetcode给定一个非负整数 num，反复将各个位上的数字相加，直到结果为一位数
+int addDigits(int num){
+	int sum = num;
+	while (sum >= 10)
+	{
+		num = sum;
+		sum = 0;
+		while (num)
+		{
+			sum = sum + num % 10;
+			num = num / 10;
+		}
+	}
+	return sum;
 }
