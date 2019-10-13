@@ -1401,7 +1401,7 @@ int main()
 }*/
 
 //斐波那契数
-int fib(int N){
+/*int fib(int N){
 	if (N == 0)
 		return 0;
 	if (N == 1 || N == 2)
@@ -1410,4 +1410,34 @@ int fib(int N){
 	{
 		return fib(N - 1) + fib(N - 2);
 	}
+}*/
+
+//leetcode按奇偶排序数组，奇数位放奇数，偶数位放偶数
+/**
+* Note: The returned array must be malloced, assume caller calls free().
+*/
+int* sortArrayByParityII(int* A, int ASize, int* returnSize){
+	int a = 1;
+	int b = 0;
+	int *arr = malloc(sizeof(int)*ASize);
+	for (int i = 0; i<ASize; i++)
+	{
+		if (A[i] % 2 != 0)
+		{
+			arr[a] = A[i];
+			a += 2;
+		}
+		else{
+			arr[b] = A[i];
+			b += 2;
+		}
+	}
+	if (a - 1>b - 1)
+	{
+		*returnSize = a - 1;
+	}
+	else{
+		*returnSize = b - 1;
+	}
+	return arr;
 }
