@@ -1591,7 +1591,7 @@ int main()
 }*/
 
 
-#include<stdio.h>
+/*#include<stdio.h>
 #include<string.h>
 typedef struct student
 {
@@ -1727,4 +1727,34 @@ int main()
 	Delete(&list, 2);	//删除第val个节点的信息
 	Show(&list);
 	return 0;
+}*/
+
+
+int countPrimeSetBits(int L, int R){
+	int count = 0;
+	for (int i = L; i <= R; i++)
+	{
+		int ret = 0;
+		int tmp = 0;
+		for (int j = 0; j<32; j++)//判断有多少个1
+		{
+			if (((i >> j) & 1) == 1)
+			{
+				tmp++;
+			}
+		}
+		for (int k = 2; k <= sqrt(tmp); k++)//判断是不是素数
+		{
+			if ((tmp%k) == 0)
+			{
+				ret = 1;//不是素数
+				break;
+			}
+		}
+		if (ret == 0)
+		{
+			count++;
+		}
+	}
+	return count;
 }
