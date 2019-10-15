@@ -2086,3 +2086,28 @@ int main()
 		printf("链栈初始化成功!\n");
 	}
 }}*/
+
+
+
+
+//leetcode只出现一次的数字
+int singleNumber(int* nums, int numsSize){
+	for (int i = 0; i<numsSize; i++)
+	{
+		int ret = 0;
+		for (int j = 0; j<numsSize; j++)
+		{
+			if (i == j)
+				continue;
+			if (nums[i] == nums[j])
+			{
+				ret = 1;
+			}
+		}
+		if (ret == 0)
+		{
+			return nums[i];
+		}
+	}
+	return 0;
+}
