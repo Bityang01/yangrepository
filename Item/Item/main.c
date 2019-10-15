@@ -1730,7 +1730,7 @@ int main()
 }*/
 
 
-int countPrimeSetBits(int L, int R){
+/*int countPrimeSetBits(int L, int R){
 	int count = 0;
 	for (int i = L; i <= R; i++)
 	{
@@ -1757,4 +1757,332 @@ int countPrimeSetBits(int L, int R){
 		}
 	}
 	return count;
+}*/
+
+
+//顺序栈
+/*#include<stdio.h>
+#include<stdlib.h>
+#include<conio.h>
+#define maxsize 20
+#define datatype char
+typedef struct
+{
+	datatype data[maxsize];
+	int top;
+}SeqStack;
+void InitStack(SeqStack *s)
+{
+	s->top = -1;
 }
+int Push(SeqStack *s, datatype x)
+{
+	if (s->top == maxsize - 1)
+		return 0;
+	s->data[++s->top] = x;
+	return 1;
+}
+int Pop(SeqStack *s, datatype *x)
+{
+	if (s->top == -1)
+		return 0;
+	*x = s->data[s->top--];
+	return 1;
+}
+int GetTop(SeqStack *s, datatype *x)
+{
+	if (s->top == -1)
+		return 0;
+	*x = s->data[s->top];
+	return 1;
+}
+char menu(void)
+{
+	char ch;
+	system("cls");
+	printf("\n"); printf("\n");
+	printf("                       顺序栈操作\n");
+	printf("            =================\n");
+	printf("                       请选择\n");
+	printf("                       1、入栈\n");
+	printf("                       2、出栈\n");
+	printf("                       3、取栈顶元素\n");
+	printf("                       0、退出\n");
+	printf("            =================\n");
+	printf("            选择（0，1，2，3）\n");
+	ch = getchar();
+	return (ch);
+}
+void main()
+{
+	SeqStack st;
+	int flag = 1, k;
+	datatype x;
+	char choice;
+	InitStack(&st);
+	do{
+		choice = menu();
+		switch (choice)
+		{
+		case '1':
+			printf("请输入入栈数据=？");
+			scanf("%d", &x);
+			k = Push(&st, &x);
+			if (k)printf("入栈结束");
+			else printf("栈为空");
+			getchar();
+			break;
+		case '2':
+			k = Pop(&st, &x);
+			if (k) printf("出栈数据=%d\n",x);
+			else printf("栈为空");
+			getchar();
+			break;
+		case '3':
+			k = GetTop(&st, &x);
+			if (k) printf("栈顶元素=%d\n", x);
+			else printf("栈为空");
+			getchar();
+			break;
+		case '0':
+			flag = 0;
+			break;
+		default:
+			break;
+		}
+	} while (flag == 1);
+}*/
+
+/*#include<stdio.h>
+typedef struct StackNode{
+	int data;
+	struct StackNode *next;
+}StackNode,*LinkStack;
+StackNode* Get(int val)
+{
+	StackNode* pGet = (StackNode*)malloc(sizeof(StackNode));
+	pGet->data = val;
+	pGet->next = NULL;
+	return pGet;
+}
+void InitStack(LinkStack S)//链栈的初始化
+{
+	S = NULL;
+}
+void Push(LinkStack S, int val)//入栈
+{
+	StackNode* pGet = Get(val);
+	pGet->next = S;
+	S = pGet;
+}
+int Pop(LinkStack S)//出栈
+{
+	int val = 0;
+	StackNode *p;
+	if (S == NULL)
+	{
+		return 0;
+	}
+	val = S->data;
+	//p = S;
+	S = S->next;
+	return val;
+}
+int main()
+{
+	//StackNode sta;
+	LinkStack S = NULL;
+	//InitStack(&sta);
+	Push(&S, 10);
+	Push(&S, 20);
+	Push(&S, 30);
+	printf("%d\n", Pop(&S));
+	printf("%d\n",Pop(&S));
+}
+
+
+/*#include<stdio.h>
+typedef struct StackNode{
+	int data;
+	struct StackNode* next;
+}StackNode,*LinkStack;
+void InitStack(LinkStack *S)//链栈的初始化
+{
+	S = NULL;
+}
+StackNode* Get(int val)
+{
+	StackNode* pGet = (StackNode*)malloc(sizeof(StackNode));
+	pGet->data = val;
+	pGet->next = NULL;
+	return pGet;
+}
+
+int Pop(LinkStack S, int e)
+{
+	if (S == NULL)
+	{
+		return 0;    // 栈空
+	}
+	e = S->data;    //将栈顶元素赋值给e
+	StackNode *p;
+	p = S;         // 临时保存栈顶元素空间，准备释放
+	S = S->next;    // 修改栈顶指针
+	free( p);     // 释放原栈顶元素空间
+	return 1;
+}
+int Push(LinkStack *S, int e)
+{
+	//元素e入栈
+	//StackNode *p;
+	StackNode* p = (StackNode*)malloc(sizeof(StackNode));
+	p->data = e;        // 将新节点数据域置为e
+	p->next = S;        // 将新节点插入栈顶
+	S = p;             // 修改栈顶指针
+	return 1;         // 链栈要注意指针的方向是从栈顶指向栈底的 
+}
+
+int main()
+{
+	//StackNode sta;
+	LinkStack S ;
+	InitStack(&S);
+	Push(&S, 10);
+	Push(&S, 20);
+	printf("%d\n",Pop(&S, 20));
+}*/
+
+
+
+/*#include <iostream>
+
+using namespace std;
+
+// 链栈的存储结构
+typedef struct StackNode
+{
+	int data;
+	struct StackNode *next;
+}StackNode, *LinkStack;
+
+// 初始化
+int InitStack(LinkStack &S)
+{
+	S = NULL;   // 将栈顶指针置空
+	return 1;
+}
+
+// 入栈
+int Push(LinkStack &S, int e)
+{
+	//元素e入栈
+	StackNode *p;
+	p = new StackNode;  // 生成新节点
+
+	p->data = e;        // 将新节点数据域置为e
+	p->next = S;        // 将新节点插入栈顶
+	S = p;             // 修改栈顶指针
+	return 1;         // 链栈要注意指针的方向是从栈顶指向栈底的 
+}
+
+// 出栈
+int Pop(LinkStack &S, int &e)
+{
+	if (S == NULL)
+	{
+		return 0;    // 栈空
+	}
+	e = S->data;    //将栈顶元素赋值给e
+	StackNode *p;
+	p = S;         // 临时保存栈顶元素空间，准备释放
+	S = S->next;    // 修改栈顶指针
+	delete p;     // 释放原栈顶元素空间
+	return 1;
+}
+
+// 取栈顶元素
+int GetTop(LinkStack S)
+{
+	//返回S的栈顶元素,不修改栈顶指针
+	if (S != NULL)  // 栈非空
+		return S->data;  // 返回栈顶元素的值,栈顶指针不变
+}
+
+void TraveStack(LinkStack S)
+{
+	StackNode *p;
+	p = S;
+	while (p)
+	{
+		printf("%d ", p->data);
+		p = p->next;
+	}
+	printf("\n");
+}
+
+int main()
+{
+	LinkStack S;
+
+	if (InitStack(S))
+	{
+		printf("链栈初始化成功!\n");
+	}
+	else
+	{
+		printf("链栈初始化失败!\n");
+	}
+
+	// 入栈
+	int n;
+	printf("请输入栈的元素个数:");
+	scanf("%d", &n);
+	for (int i = 0; i < n;)
+	{
+		int e;
+		printf("请输入第%d个入栈的元素:", ++i);
+		scanf("%d", &e);
+		Push(S, e);
+	}
+	printf("遍历栈:\n");
+	TraveStack(S);
+
+	// 出栈（取出两个元素）
+	for (int i = 0; i < 2;)
+	{
+		int a;
+		Pop(S, a);
+		printf("第%d个出栈的元素:%d\n", ++i, a);
+	}
+	printf("遍历栈:\n");
+	TraveStack(S);
+
+	printf("栈顶元素是:%d\n", GetTop(S));
+
+	system("pause");
+
+	return 0;
+
+
+#include<stdio.h>
+typedef struct StackNode
+{
+	int data;
+	struct StackNode *next;
+}StackNode, *LinkStack;
+
+// 初始化
+int InitStack(LinkStack &S)
+{
+	S = NULL;   // 将栈顶指针置空
+	return 1;
+}
+int main()
+{
+	LinkStack S;
+
+	if (InitStack(S))
+	{
+		printf("链栈初始化成功!\n");
+	}
+}}*/
