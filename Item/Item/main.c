@@ -2158,7 +2158,7 @@ int main()
 
 /**
 * Note: The returned array must be malloced, assume caller calls free().
-*/
+
 int* nextGreaterElement(int* nums1, int nums1Size, int* nums2, int nums2Size, int* returnSize){
 	*returnSize = nums1Size;
 	int ret = 0;
@@ -2197,7 +2197,7 @@ int* nextGreaterElement(int* nums1, int nums1Size, int* nums2, int nums2Size, in
 //leetcode下一个更大的数
 /**
 * Note: The returned array must be malloced, assume caller calls free().
-*/
+
 int* nextGreaterElement(int* nums1, int nums1Size, int* nums2, int nums2Size, int* returnSize){
 	*returnSize = nums1Size;
 	int *arr = malloc(sizeof(int)*nums1Size);
@@ -2226,4 +2226,75 @@ int* nextGreaterElement(int* nums1, int nums1Size, int* nums2, int nums2Size, in
 		}
 	}
 	return arr;
+}*/
+
+#include<stdio.h>
+int reverse(int x){
+	double sum = 0;
+	int number = x;
+	int count = 0;
+	int tmp = (x >> 31) & 1;//tmp=1时负数
+	while (number)
+	{
+		count++;
+		number = number / 10;
+	}
+	int *arr = malloc(sizeof(int)*count);
+	for (int i = 0; i<count; i++)
+	{
+		arr[i] = x % 10;//arr[0]=3 arr[1]=2 arr[2]=1
+		x = x / 10;
+	}
+	for (int j = 0; j<count; j++)
+	{
+		sum = sum + arr[j] * pow(10, count - 1 - j);
+	}
+	if (tmp == 1)
+	{
+		sum = sum*(-1);
+		return sum;
+	}
+	else
+	{
+		return sum;
+	}
+}
+int main()
+{
+	int sum = 10;
+	printf("%d\n", reverse(-2147483648));
+}
+
+
+
+int reverse(int x){
+	long sum = 0;
+	int number = x;
+	int count = 0;
+	int tmp = (x >> 31) & 1;//tmp=1时负数
+	//int X=abs(x);
+	while (number)
+	{
+		count++;
+		number = number / 10;
+	}
+	int *arr = malloc(sizeof(int)*count);
+	for (int i = 0; i<count; i++)
+	{
+		arr[i] = X % 10;//arr[0]=3 arr[1]=2 arr[2]=1
+		X = X / 10;
+	}
+	for (int j = 0; j<count; j++)
+	{
+		sum = sum + arr[j] * pow(10, count - 1 - j);
+	}
+	if (tmp == 1)
+	{
+		sum = sum*(-1);
+		return sum;
+	}
+	else
+	{
+		return sum;
+	}
 }
