@@ -2091,7 +2091,7 @@ int main()
 
 
 //leetcode只出现一次的数字
-int singleNumber(int* nums, int numsSize){
+/*int singleNumber(int* nums, int numsSize){
 	for (int i = 0; i<numsSize; i++)
 	{
 		int ret = 0;
@@ -2110,4 +2110,120 @@ int singleNumber(int* nums, int numsSize){
 		}
 	}
 	return 0;
+}*/
+
+
+/*#include<stdio.h>
+typedef struct StackNode{
+	int data;
+	struct StackNode* next;
+}StackNode,*LinkStack;
+int InitStack(LinkStack s)//初始化栈
+{
+	s = NULL;
+	return 1;
+}
+StackNode* GetNode(int val)//生成一个节点
+{
+	StackNode * pGet = (StackNode*)malloc(sizeof(StackNode));
+	pGet->data = val;
+	pGet->next = NULL;
+	return pGet;
+}
+void Push(LinkStack s, int val)
+{
+	StackNode* pGet = GetNode(val);
+	pGet->data = val;
+	pGet->next = s;
+	s = pGet;
+}
+void Show(LinkStack s)
+{
+	while (s->next != NULL)
+	{
+		printf("%d  ", s->data);
+		s = s->next;
+	}
+}
+int main()
+{
+	LinkStack S=NULL;
+	InitStack(S);
+	Push(S, 10);
+	Push(S, 20);
+	Push(S, 30);
+	Show(S);
+}*/
+
+
+/**
+* Note: The returned array must be malloced, assume caller calls free().
+*/
+int* nextGreaterElement(int* nums1, int nums1Size, int* nums2, int nums2Size, int* returnSize){
+	*returnSize = nums1Size;
+	int ret = 0;
+	int *arr = malloc(sizeof(int)*nums1Size);
+	for (int i = 0; i<nums1Size; i++)
+	{
+		for (int j = 0; j<nums2Size; j++)
+		{
+			if (j == nums2Size - 1)
+			{
+				arr[i] = -1;
+				break;
+			}
+			if (nums1[i] == nums2[j])
+			{
+				for (int k = j; k<nums2Size; k++)
+				{
+					if (nums1[i]<nums2[k])
+					{
+						arr[i] = nums2[k];
+						ret == 1;
+						break;
+					}
+				}
+				if (ret == 0)
+				{
+					arr[i] = -1;
+				}
+				break;
+			}
+		}
+	}
+	return arr;
+}
+
+//leetcode下一个更大的数
+/**
+* Note: The returned array must be malloced, assume caller calls free().
+*/
+int* nextGreaterElement(int* nums1, int nums1Size, int* nums2, int nums2Size, int* returnSize){
+	*returnSize = nums1Size;
+	int *arr = malloc(sizeof(int)*nums1Size);
+	for (int i = 0; i<nums1Size; i++)
+	{
+		int ret = 0;
+		for (int j = 0; j<nums2Size; j++)
+		{
+			if (nums1[i] == nums2[j])
+			{
+				for (int k = j; k<nums2Size; k++)
+				{
+					if (nums1[i]<nums2[k])
+					{
+						arr[i] = nums2[k];
+						ret = 1;
+						break;
+					}
+				}
+				if (ret == 0)
+				{
+					arr[i] = -1;
+				}
+				break;
+			}
+		}
+	}
+	return arr;
 }
