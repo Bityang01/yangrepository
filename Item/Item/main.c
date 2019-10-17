@@ -2228,7 +2228,7 @@ int* nextGreaterElement(int* nums1, int nums1Size, int* nums2, int nums2Size, in
 	return arr;
 }*/
 
-#include<stdio.h>
+/*#include<stdio.h>
 int reverse(int x){
 	double sum = 0;
 	int number = x;
@@ -2297,4 +2297,48 @@ int reverse(int x){
 	{
 		return sum;
 	}
+}*/
+
+
+//leetcode»ØÎÄÊı
+bool isPalindrome(int x){
+	int count = 0;
+	int number = x;
+	while (number)
+	{
+		count++;
+		number = number / 10;
+	}
+	int *arr = malloc(sizeof(int)*count);
+	if (x<0)
+	{
+		return false;
+	}
+	x = abs(x);
+	for (int i = 0; i<count; i++)
+	{
+		arr[i] = x % 10;
+		x = x / 10;
+	}
+	int left = 0;
+	int right = count - 1;
+	/*while((left<right)&&(arr[left]==arr[right]))
+	{
+	left++;
+	right--;
+	}
+	if((left+1==right)||(left==right))
+	{
+	return true;
+	}else{
+	return false;
+	}*/
+	for (left = 0, right = count - 1; (left<count) && (left<right); left++, right--)
+	{
+		if (arr[left] != arr[right])
+		{
+			return false;
+		}
+	}
+	return true;
 }
