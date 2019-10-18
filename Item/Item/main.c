@@ -2301,7 +2301,7 @@ int reverse(int x){
 
 
 //leetcode回文数
-bool isPalindrome(int x){
+/*bool isPalindrome(int x){
 	int count = 0;
 	int number = x;
 	while (number)
@@ -2322,17 +2322,17 @@ bool isPalindrome(int x){
 	}
 	int left = 0;
 	int right = count - 1;
-	/*while((left<right)&&(arr[left]==arr[right]))
-	{
-	left++;
-	right--;
-	}
-	if((left+1==right)||(left==right))
-	{
-	return true;
-	}else{
-	return false;
-	}*/
+	//while((left<right)&&(arr[left]==arr[right]))
+	//{
+	//left++;
+	//right--;
+	//}
+	//if((left+1==right)||(left==right))
+	//{
+	//return true;
+	//}else{
+	//return false;
+	//}
 	for (left = 0, right = count - 1; (left<count) && (left<right); left++, right--)
 	{
 		if (arr[left] != arr[right])
@@ -2341,4 +2341,122 @@ bool isPalindrome(int x){
 		}
 	}
 	return true;
+}*/
+
+/*#include<stdio.h>
+void Function(char **arr)
+{
+	for (int i = 0; i < strlen(*arr[0]); i++)
+	{
+		printf("%c\n", *arr[i]);
+	}
+
+}
+int main()
+{
+	char *arr[] = { "hellow", "shide", "wode" };
+	Function(&arr);
+}
+
+
+char * longestCommonPrefix(char ** strs, int strsSize){
+	int ret = 0;
+	char *arr = malloc(sizeof(char)*strlen(*strs[0]));
+	for (int i = 0; i<strlen(*strs[0]); i++)
+	{
+		for (int j = 0; j<strsSize; j++)
+		{
+			if (strs[0][i] == strs[j][i])
+			{
+				arr[i] = strs[j][i];
+			}
+			else{
+				ret = 1;
+			}
+		}
+		if (ret == 0)
+		{
+			return arr;
+		}
+		else{
+			return "";
+		}
+	}
+}*/
+
+
+/*#include<stdio.h>
+int main()
+{
+	int i = 0;
+	int arr[10] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+	for (i = 0; i <= 12; i++)
+	{
+		arr[i] = 0;
+		printf("hello\n");
+	}
+	return 0;
+}*/
+
+
+/*bool isValid(char * s){
+	int count = 0;
+	char* arr = malloc(sizeof(char)*strlen(s));
+	for (int i = 0; i<strlen(s); i++)
+	{
+		if ((*(s + i) == '(') || (*(s + i) == '{') || (*(s + i) == '['))
+		{
+			*(arr + count) = *(s + i);
+			count++;
+		}
+		if ((*(s + i) == ')') || (*(s + i) == '}') || (*(s + i) == ']'))
+		{
+			if ((*(s + i)) != (*(arr + count - 1) + 1) || (*(s + i)) != (*(arr + count - 1) + 2))
+			{
+				return false;
+			}
+		}
+	}
+	return true;
+}*/
+
+
+//leetcode有效的括号
+bool isValid(char * s){
+	int count = 0;
+	char* arr = malloc(sizeof(char)*strlen(s));
+	if ((strlen(s) % 2) != 0)
+	{
+		return false;
+	}
+	for (int i = 0; i<strlen(s); i++)
+	{
+		if ((*(s + i) == '(') || (*(s + i) == '{') || (*(s + i) == '['))
+		{
+			*(arr + count) = *(s + i);
+			count++;
+		}
+		if ((*(s + i) == ')') || (*(s + i) == '}') || (*(s + i) == ']'))
+		{
+			if (count == 0)
+			{
+				return false;
+			}
+			if ((*(s + i)) == (*(arr + count - 1) + 1) || (*(s + i)) == (*(arr + count - 1) + 2))
+			{
+				*(arr + count - 1) = 0;
+				count--;
+			}
+			else{
+				return false;
+			}
+		}
+	}
+	if ((*(arr + 0) == '(') || (*(arr + 0) == '{') || (*(arr + 0) == '[') || (*(arr + 0) == ')') || (*(arr + 0) == '}') || (*(arr + 0) == ']'))
+	{
+		return false;
+	}
+	else{
+		return true;
+	}
 }
