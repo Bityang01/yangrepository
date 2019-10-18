@@ -2422,7 +2422,7 @@ int main()
 
 
 //leetcode有效的括号
-bool isValid(char * s){
+/*bool isValid(char * s){
 	int count = 0;
 	char* arr = malloc(sizeof(char)*strlen(s));
 	if ((strlen(s) % 2) != 0)
@@ -2459,4 +2459,41 @@ bool isValid(char * s){
 	else{
 		return true;
 	}
+}*/
+
+
+
+#include<stdio.h>
+int main()
+{
+	int i = 0;
+	int arr[10] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+	for (i = 0; i <= 12; i++)
+	{
+		arr[i] = 0;
+		printf("hello\n");
+	}
+	return 0;
+}
+
+
+//leetcode删除数组中的排序项
+int removeDuplicates(int* nums, int numsSize){
+	int i = 0;
+	int j = 1;
+	if (numsSize == 0)
+		return 0;
+	while (j<numsSize)
+	{
+		if (nums[i] == nums[j])
+		{
+			j++;
+		}
+		else{
+			i++;
+			nums[i] = nums[j];
+			j++;
+		}
+	}
+	return i + 1;
 }
