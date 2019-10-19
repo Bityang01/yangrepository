@@ -2499,7 +2499,7 @@ int removeDuplicates(int* nums, int numsSize){
 }*/
 
 //leetcodeÒÆ³ıÔªËØ
-int removeElement(int* nums, int numsSize, int val){
+/*int removeElement(int* nums, int numsSize, int val){
 	int i = 0;
 	int j = 0;
 	while (j<numsSize)
@@ -2515,4 +2515,67 @@ int removeElement(int* nums, int numsSize, int val){
 		}
 	}
 	return i;
+}*/
+
+
+int strStr(char * haystack, char * needle){
+	int count = 0;
+	int t = 0;
+	if (strlen(haystack) == 0)
+	{
+		if (strlen(needle) == 0)
+		{
+			return 0;
+		}
+		else{
+			return -1;
+		}
+	}
+	if (strlen(needle) == 0)
+	{
+		return 0;
+	}
+	for (int i = 0; i<strlen(haystack); i++)
+	{
+		if (*(haystack + i) == *(needle + count))
+		{
+			count++;
+		}
+		else{
+			count = 0;
+			t = t + 1;
+			i = t;
+		}
+		if (count == strlen(needle))
+		{
+			return i + 1 - count;
+		}
+	}
+	return -1;
+}
+
+int strStr(char * haystack, char * needle){
+	int i = 0, j = 0, t = i;
+	while (haystack[i] && needle[j])
+	{
+		if (haystack[i] == needle[j])
+		{
+			i++; j++;
+			continue;
+		}
+		else
+		{
+			t = t + 1;
+			i = t;
+			j = 0;
+		}
+	}
+	if (needle[j] == '\0')
+		return t;
+	return -1;
+}
+#include<stdio.h>
+int main()
+{
+	printf("%d\n",'h'&&'\0');
 }
