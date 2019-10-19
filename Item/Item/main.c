@@ -2463,7 +2463,7 @@ int main()
 
 
 
-#include<stdio.h>
+/*#include<stdio.h>
 int main()
 {
 	int i = 0;
@@ -2496,4 +2496,23 @@ int removeDuplicates(int* nums, int numsSize){
 		}
 	}
 	return i + 1;
+}*/
+
+//leetcodeÒÆ³ıÔªËØ
+int removeElement(int* nums, int numsSize, int val){
+	int i = 0;
+	int j = 0;
+	while (j<numsSize)
+	{
+		if (nums[j] == val)
+		{
+			j++;
+		}
+		else{
+			nums[i] = nums[j];
+			i++;
+			j++;
+		}
+	}
+	return i;
 }
