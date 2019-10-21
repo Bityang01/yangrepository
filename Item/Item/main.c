@@ -2659,7 +2659,7 @@ int main()
 
 
 //leetcode最后一个单词的长度
-int lengthOfLastWord(char * s){
+/*int lengthOfLastWord(char * s){
 	int flg = 0;
 	int ret = 0;
 	int count = strlen(s);
@@ -2676,4 +2676,74 @@ int lengthOfLastWord(char * s){
 		ret++;
 	}
 	return ret;
+}
+*/
+
+int reverse(int x){
+	int sum = 0;
+	int number = x;
+	int count = 0;
+	int tmp = (x >> 31) & 1;//tmp=1时负数
+	//int X=abs(x);
+	while (number)
+	{
+		count++;
+		number = number / 10;
+	}
+	int *arr = malloc(sizeof(int)*count);
+	for (int i = 0; i<count; i++)
+	{
+		arr[i] = X % 10;//arr[0]=3 arr[1]=2 arr[2]=1
+		X = X / 10;
+	}
+	for (int j = 0; j<count; j++)
+	{
+		sum = sum + arr[j] * pow(10, count - 1 - j);
+	}
+	if (tmp == 1)
+	{
+		sum = sum*(-1);
+		return sum;
+	}
+	else
+	{
+		return sum;
+	}
+}
+
+
+int reverse(int x){
+	int count = 0;
+	int sum = 0;
+	long overFlow = 0;
+	long num = x;
+	int flg = (num >> 31) & 1;//flg=1代表负数
+	num = abs(num);
+	x = abs(x);
+	while (num){
+		count++;
+		num = num / 10;
+	}
+	int* arr = malloc(sizeof(int)*count);
+	for (int i = 0; i<count; i++){
+		arr[i] = x % 10;//arr[0]=3 arr[1]=2 arr[2]=1
+		x = x / 10;
+	}
+	for (int j = 0; j<count; j++){
+		overFlow = overFlow + arr[j] * pow(10, count - 1 - j);
+	}
+	if (overFlow <= -2147483648 || overFlow >= 2147483647)
+	{
+		return 0;
+	}
+	else{
+		sum = (int)(overFlow);
+	}
+	if (flg == 1)
+	{
+		return -1 * sum;
+	}
+	else{
+		return sum;
+	}
 }
