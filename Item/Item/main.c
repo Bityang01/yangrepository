@@ -2518,7 +2518,7 @@ int removeDuplicates(int* nums, int numsSize){
 }*/
 
 
-int strStr(char * haystack, char * needle){
+/*int strStr(char * haystack, char * needle){
 	int count = 0;
 	int t = 0;
 	if (strlen(haystack) == 0)
@@ -2578,4 +2578,102 @@ int strStr(char * haystack, char * needle){
 int main()
 {
 	printf("%d\n",'h'&&'\0');
+}*/
+
+//leetcode搜索插入位置
+/*int searchInsert(int* nums, int numsSize, int target){
+	int left = 0;
+	int right = numsSize - 1;
+	while (left <= right){
+		int mid = (left + right) / 2;
+		if (nums[mid] == target){
+			return mid;
+		}
+		if (nums[mid]<target){
+			left = mid + 1;
+		}
+		if (nums[mid]>target){
+			right = mid - 1;
+		}
+	}
+	for (int i = 0; i<numsSize; i++)
+	{
+		if (nums[i]>target)
+		{
+			return i;
+		}
+		if (i == numsSize - 1)
+		{
+			return numsSize;
+		}
+	}
+	return -1;
+}*/
+
+
+/*int lengthOfLastWord(char * s){
+	int ret = 0;
+	int flg = 0;
+	int count = strlen(s);
+	for (int j = 0; j<count; j++)
+	{
+		if (*(s + j) != ' ')
+		{
+			flg = 1;
+		}
+	}
+	if (flg == 0){
+		return 0;
+	}
+	if (count == 0)
+	{
+		return 0;
+	}
+	for (int i = count - 1; i >= 0; i--)
+	{
+		if (*(s + count - 1) == ' ')
+		{
+			continue;
+		}
+		if (*(s + i) == ' ')
+		{
+			return ret;
+		}
+		if (i == 0)
+		{
+			return ret + 1;
+		}
+		ret++;
+	}
+	return 1;
+}*/
+
+
+/*#include<stdio.h>
+int main()
+{
+	char arr[] = "hello world";
+	printf("%d\n", strlen(arr));
+}*/
+
+
+
+//leetcode最后一个单词的长度
+int lengthOfLastWord(char * s){
+	int flg = 0;
+	int ret = 0;
+	int count = strlen(s);
+	for (int i = count - 1; i >= 0; i--){
+		if (*(s + i) == ' ')
+		{
+			if (flg == 1)
+			{
+				break;
+			}
+			continue;
+		}
+		flg = 1;
+		ret++;
+	}
+	return ret;
 }
