@@ -2679,7 +2679,7 @@ int main()
 }
 */
 
-int reverse(int x){
+/*int reverse(int x){
 	int sum = 0;
 	int number = x;
 	int count = 0;
@@ -2775,4 +2775,22 @@ int reverse(int x){
 		}
 	}
 	return sum;
+}*/
+
+//leetcode最大子序和
+int maxSubArray(int* nums, int numsSize){
+	int sumMax = nums[0];
+	for (int i = 0; i<numsSize; i++)
+	{
+		int sum = 0;
+		for (int j = i; j<numsSize; j++)
+		{
+			sum = sum + nums[j];
+			if (sum>sumMax)
+			{
+				sumMax = sum;
+			}
+		}
+	}
+	return sumMax;
 }
