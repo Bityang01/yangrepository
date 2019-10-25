@@ -2971,5 +2971,220 @@ int main()
 }*/
 
 
+#include<stdio.h>
+#include<string.h>
+typedef struct Book{				//定义书籍信息
+	char ISBN[20];
+	char bookName[20];
+	double Price;
+}Book;
+
+typedef struct LNode{			//定义书籍节点
+	Book data;
+	struct LNode * next;
+}LNode, *LinkList;
+
+void InitList(LinkList list)		//初始化链表
+{
+	if (list->next == NULL)
+	{
+		return;
+	}
+	list->next = NULL;
+}
+
+LNode *GetNode(Book book)//生成一个节点
+{
+	LNode * pGet = (LNode *)malloc(sizeof(LNode));
+	strcpy(pGet->data.bookName, book.bookName);
+	strcpy(pGet->data.ISBN, book.ISBN);
+	pGet->data.Price = book.Price;
+	pGet->next = NULL;
+	return pGet;
+}
+
+void InsertTailList(LinkList list, Book book)//尾插
+{
+	LNode *pCur = list;
+	while ((pCur->next) != NULL)
+	{
+		pCur = pCur->next;
+	}
+	LNode *pGet = GetNode(book);
+	pCur->next = pGet;
+}
+
+LNode *nameFind(LinkList list, char *name)	//书名查找
+{
+	LNode *pCur = list->next;
+	while (strcmp(pCur->data.bookName, name))
+	{
+		pCur = pCur->next;
+	}
+	return pCur;
+}
+
+void Delete(LinkList list, int val)	//删除第val本书籍
+{
+	LNode* pCur = list;
+	int count = 1;
+	while (count != val)
+	{
+		pCur = pCur->next;
+		count++;
+	}
+	pCur->next = pCur->next->next;
+}
+
+int Getlength(LinkList list)	//得到长度
+{
+	int count = 0;
+	LNode* pCur = list->next;
+	while (pCur != NULL)
+	{
+		count++;
+		pCur = pCur->next;
+	}
+	return count;
+}
+
+void Modify(LinkList list, int val,Book book)//修改书籍
+{
+	int tmp = 1;
+	LNode* pCur = list->next;
+	while (tmp != val)
+	{
+		pCur = pCur->next;
+		tmp++;
+	}
+	strcpy(pCur->data.ISBN, book.ISBN);
+	strcpy(pCur->data.bookName, book.bookName);
+	pCur->data.Price = book.Price;
+}
+
+void Show(LinkList list)	//打印
+{
+	LNode *pCur = list->next;
+	while (pCur != NULL)
+	{
+		printf("%s ", pCur->data.ISBN);
+		printf("%10s ", pCur->data.bookName);
+		printf("%6d ", pCur->data.Price);
+		printf("\n");
+		pCur = pCur->next;
+	}
+	printf("\n");
+}
+int main()
+{
+	printf("=============================\n");
+	printf("                        图书管理系统\n");
+	printf("                        1、初始化系统\n");
+	printf("                        2、查看当前存放的书籍\n");
+	printf("                        3、向系统录入书籍\n");
+	printf("                        4、查找书籍\n");
+	printf("                        5、删除书籍\n");
+	printf("                        6、查看当前书籍总量\n");
+	printf("                        7、修改书籍信息\n");
+	printf("                        0、退出系统\n");
+	printf("\n");
+	printf("=============================\n");
+	int tmp;
+	int count = 1;
+	LNode list;
+	InitList(&list);
+	while (count){
+		printf("请输入你的操作\n");
+		scanf_s("%d", &tmp);
+		switch (tmp)
+		{
+		case 1:
+		{
+			InitList(&list);
+			printf("初始化完成！\n");
+			count = 1;
+			break;
+		}
+		case 2:
+		{
+			Show(&list);
+			count = 1;
+			break;
+		}
+		case 3:
+		{
+			int ret = 0;
+			printf("你想输入多少本书籍？");
+			scanf_s("%d", &ret);
+			for (int i = 0; i < ret; i++)
+			{
+				Book book;
+				printf("书籍的ISBN号：");
+				scanf("%s", book.ISBN);
+				printf("书名：");
+				scanf("%s", book.bookName);
+				printf("书籍价格：");
+				scanf_s("%d", &book.Price);
+				InsertTailList(&list, book);
+				printf("录入完成！\n");
+			}
+			count = 1;
+			break;
+		}
+		case 4:
+		{
+			char arr[10] = { NULL };
+			printf("请输入要查找书籍的书名：");
+			scanf("%s", arr);
+			printf("%s", nameFind(&list, arr)->data.ISBN);
+			printf("%10s ", nameFind(&list, arr)->data.bookName);
+			printf("%6d ", nameFind(&list, arr)->data.Price);
+			printf("\n");
+			break;
+		}
+		case 5:
+		{
+			int val = 0;
+			printf("请输入想删除第几本书！");
+			scanf_s("%d", &val);
+			Delete(&list, val);
+			printf("删除成功！");
+			count = 1;
+			break;
+		}
+		case 6:
+		{
+			printf("当前书库有%d本书籍！\n",Getlength(&list));
+			count = 1;
+			break;
+		}
+		case 7:
+		{
+			int val = 0;
+			Book book;
+			printf("请输入你想修改第几本书籍！");
+			scanf("%d", &val);
+			printf("书籍的ISBN号：");
+			scanf("%s", book.ISBN);
+			printf("书名：");
+			scanf("%s", book.bookName);
+			printf("书籍价格：");
+			scanf_s("%d", &book.Price);
+			Modify(&list, val,book);
+			printf("修改成功！");
+			count = 1;
+			break;
+		}
+		case 0:
+		{
+			printf("退出系统成功！\n");
+			count = 0;
+		}
+		default:
+			break;
+		}
+	}
+
+}
 
 
