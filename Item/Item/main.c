@@ -2971,7 +2971,7 @@ int main()
 }*/
 
 
-#include<stdio.h>
+/*#include<stdio.h>
 #include<string.h>
 typedef struct Book{				//定义书籍信息
 	char ISBN[20];
@@ -3078,15 +3078,15 @@ void Show(LinkList list)	//打印
 int main()
 {
 	printf("=============================\n");
-	printf("                        图书管理系统\n");
-	printf("                        1、初始化系统\n");
-	printf("                        2、查看当前存放的书籍\n");
-	printf("                        3、向系统录入书籍\n");
-	printf("                        4、查找书籍\n");
-	printf("                        5、删除书籍\n");
-	printf("                        6、查看当前书籍总量\n");
-	printf("                        7、修改书籍信息\n");
-	printf("                        0、退出系统\n");
+	printf("        图书管理系统\n");
+	printf("         1、初始化系统\n");
+	printf("         2、查看当前存放的书籍\n");
+	printf("         3、向系统录入书籍\n");
+	printf("         4、查找书籍\n");
+	printf("         5、删除书籍\n");
+	printf("         6、查看当前书籍总量\n");
+	printf("         7、修改书籍信息\n");
+	printf("         0、退出系统\n");
 	printf("\n");
 	printf("=============================\n");
 	int tmp;
@@ -3188,3 +3188,49 @@ int main()
 }
 
 
+
+/*char * addBinary(char * a, char * b){
+	int aNum = 0;
+	int bNum = 0;
+	for (int i = strlen(a) - 1; i >= 0; i--)
+	{
+		aNum = aNum + pow(2, strlen(a) - 1 - i);
+	}
+	for (int j = strlen(b) - 1; j >= 0; j--)
+	{
+		bNum = bNum + pow(2, strlen(b) - 1 - j);
+	}
+	int sumNum = aNum + bNum;
+	int count = 0;
+	int ret = sumNum;
+	while (ret)
+	{
+		count++;
+		ret = ret / 2;
+	}
+	char* arr = malloc(sizeof(char)*count);
+	int tmp = 0;
+	for (int k = count - 1; k >= 0; k--)
+	{
+		tmp = sumNum % 2;
+		sumNum = sumNum / 2;
+		*(arr + k) = tmp;
+	}
+	return arr;
+}*/
+
+//leetcodex的平方根
+int mySqrt(int x){
+	for (long i = 1; i <= x; i++)
+	{
+		if ((i*i)>x)
+		{
+			return i - 1;
+		}
+		if ((i*i) == x)
+		{
+			return i;
+		}
+	}
+	return 0;
+}

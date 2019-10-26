@@ -1,7 +1,7 @@
-import java.util.Scanner;
+/*import java.util.Scanner;
 import java.lang.Math;
 public 	class work{
-	public static void main(String[] args){
+	public static void main(String[] args){*/
 		
 		//输出一个整数的每一位
 		/*Scanner in=new Scanner(System.in);
@@ -240,5 +240,81 @@ public 	class work{
 		a=a^b;
 		System.out.println("a="+a+"  b="+b);
 		*/
-	}
+//	}
+//}
+
+
+//编写一个类Calculator,有两个属性num1,num2,这两个数据的值，不能在定义的同时初始化，最后实现加减乘除四种运算
+/*class Calculator{
+    public double num1;
+    public double num2;
+    public double add(double num1,double num2){
+        return num1+num2;
+    }
+    public double Minus(double num1,double num2){
+        return num1-num2;
+    }
+
+    public double Multiply(double num1,double num2){
+        return num1*num2;
+    }
+    public double Divide(double num1,double num2){
+        return num1/num2;
+    }
+}
+
+public class Demo {
+    public static void main(String[] args) {
+        Calculator number=new Calculator();
+        System.out.println(number.add(10,20));
+        System.out.println(number.Minus(20,15));
+        number.num1=10;
+        number.num2=15;
+        System.out.println(number.Multiply(number.num1,number.num2));
+        System.out.println(number.Divide(20,4));
+    }
+}*/
+
+
+//设计一个包含多个构造函数的类，并分别用这些构造函数来进行实例化对象。
+/*class Person{
+    public Person(){
+        System.out.println("没有参数的构造函数！");
+    }
+    public Person(String str){
+        System.out.println("有一个参数的构造函数！参数是："+str);
+    }
+    public Person(int num,String str){
+        System.out.println("有两个参数的构造函数！参数是："+num+"和"+str);
+    }
+    public Person(int ...personAge){
+        for (int age:personAge) {
+            System.out.println("年龄是"+age);
+        }
+    }
+}
+public class Demo{
+    public static void main(String[] args) {
+        Person per=new Person();
+        Person per1=new Person("博哥");
+        Person per2=new Person(18,"博哥");
+        Person per3=new Person(10,20,300,405,69);
+
+    }
+}*/
+
+
+//实现交换两个变量的值。要求：需要交换实参的值。
+public class Demo{
+    public static void swap(int[] array){
+        array[0]=array[0]^array[1];
+        array[1]=array[0]^array[1];
+        array[0]=array[0]^array[1];
+    }
+    public static void main(String[] args) {
+        int[] arr={10,20};
+        System.out.println("交换之前的数arr[0] "+arr[0]+"和arr[1] "+arr[1]);
+        swap(arr);
+        System.out.println("交换之后的数arr[0] "+arr[0]+"和arr[1] "+arr[1]);
+    }
 }
