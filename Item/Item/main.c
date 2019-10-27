@@ -3220,7 +3220,7 @@ int main()
 }*/
 
 //leetcodex的平方根
-int mySqrt(int x){
+/*int mySqrt(int x){
 	for (long i = 1; i <= x; i++)
 	{
 		if ((i*i)>x)
@@ -3233,4 +3233,60 @@ int mySqrt(int x){
 		}
 	}
 	return 0;
+}*/
+
+
+//leetcode爬楼梯
+/*int climbStairs(int n){
+	if (n == 1)
+		return 1;
+	if (n == 2)
+		return 2;
+	int f1 = 1;
+	int f2 = 2;
+	int f3 = 0;
+	for (int i = 3; i <= n; i++){
+		f3 = f1 + f2;
+		f1 = f2;
+		f2 = f3;
+	}
+	return f3;
+}*/
+
+
+
+#include<stdio.h>
+
+typedef struct LinkStack{
+	int data;
+	struct LinkStack* next;
+}LinkStack;
+
+LinkStack *top;
+
+void IsPush(LinkStack *stack, int x)
+{
+	LinkStack * p=malloc(sizeof(LinkStack));
+	p->data = x;
+	p->next = top;
+	top = p;
 }
+
+
+void initLS(LinkStack *LS, int n)
+{
+	top = NULL;
+	printf("输入%d个数字，以0结束", n);
+	scanf("%d", &n);
+	while (n != 0)
+	{
+		lsPush(LS, n);
+		scanf("%d", &n);
+	}
+}
+
+	int main()
+	{
+		LinkStack * link = malloc(sizeof(LinkStack));
+		initLS(link, 8);
+	}
