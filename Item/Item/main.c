@@ -3254,39 +3254,119 @@ int main()
 }*/
 
 
+//链栈
+/*#include<stdio.h>
 
-#include<stdio.h>
-
-typedef struct LinkStack{
+typedef struct StackNode{
 	int data;
 	struct LinkStack* next;
-}LinkStack;
+}StackNode,*LinkStack;
 
-LinkStack *top;
+LinkStack S = NULL;
 
-void IsPush(LinkStack *stack, int x)
+void Push(LinkStack list, int val)
 {
-	LinkStack * p=malloc(sizeof(LinkStack));
-	p->data = x;
-	p->next = top;
-	top = p;
+	StackNode* pGet = (StackNode*)malloc(sizeof(StackNode));
+	pGet->data = val;
+	pGet->next = S;
+	S = pGet;
 }
 
-
-void initLS(LinkStack *LS, int n)
+int Pop()
 {
-	top = NULL;
-	printf("输入%d个数字，以0结束", n);
-	scanf("%d", &n);
-	while (n != 0)
-	{
-		lsPush(LS, n);
-		scanf("%d", &n);
+	int tmp = S->data;
+	S = S->next;
+	return tmp;
+}
+
+void Show(LinkStack list)
+{
+	StackNode* pCur = S;
+	while (pCur != NULL){
+		printf("%d  ", pCur->data);
+		pCur = pCur->next;
 	}
 }
 
-	int main()
+int main()
+{
+	StackNode stack;
+	int input = 0;
+	int count = 0;
+	printf("想入栈几个元素？\n");
+	scanf_s("%d", &count);
+	for (int i = 0; i < count; i++)
 	{
-		LinkStack * link = malloc(sizeof(LinkStack));
-		initLS(link, 8);
+		scanf_s("%d", &input);
+		if (input == -1)
+		{
+			printf("出栈元素是%d  \n",Pop());
+		}
+		else{
+			Push(&stack, input);
+		}
 	}
+	Show(&stack);
+}*/
+
+//顺序栈
+#include<stdio.h>
+#define MAXSIZE 3
+
+typedef struct{
+	int* base;
+	int* top;
+	int stacksize;
+}sqStack;
+
+
+
+void InitStack(sqStack* S){
+	S->base = (int* )malloc(sizeof(int)*MAXSIZE);
+	S->top = S->base;
+	S->stacksize = MAXSIZE;
+}
+
+void Push(sqStack *S,int val)
+{
+	if ((S->top - S->base )== S->stacksize)
+	{
+		printf("栈满！\n");
+		return;
+	}
+	*S->top++ = val;
+	printf("入栈成功\n");
+}
+
+int Pop(sqStack *S)
+{
+	int tmp=0;
+	if (S->base == S->top)
+	{
+		printf("栈空！\n");
+		return;
+	}
+	tmp = *--S->top;
+	return tmp;
+}
+
+int main()
+{
+	int input = 0;
+	int num = 0;
+	sqStack St;
+	InitStack(&St);
+	printf("要入栈几个元素？\n");
+	scanf_s("%d", &input);
+	for (int i = 0; i < input; i++)
+	{
+		scanf_s("%d", &num);
+		if (num == -1)
+		{
+			printf("出栈元素是%d\n", Pop(&St));
+		}
+		else{
+			Push(&St, num);
+		}
+	}
+}
