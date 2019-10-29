@@ -3372,7 +3372,7 @@ int main()
 }*/
 
 
-#include<stdio.h>
+/*#include<stdio.h>
 #define MAXQSIZE 100
 typedef struct {
 	char name[20];
@@ -3474,4 +3474,37 @@ int main()
 {
 	Person dancer[5] = { {"赵女", 'F'}, {"赵男",'M'}, {"张女",'F'}, {"张男",'M'}, {"杨女",'F'} };
 	DancerPartner(dancer, 5);
+}*/
+
+
+
+void merge(int* nums1, int nums1Size, int m, int* nums2, int nums2Size, int n){
+	for (int i = 0; i<nums2Size; i++)
+	{
+		for (int j = 0; j<m; j++)
+		{
+			if ((nums1[0] == 0) && (nums2[0] == 1))
+			{
+				nums1[0] = nums2[0];
+				break;
+			}
+			if (nums2[i]<nums1[j])
+			{
+				for (int k = m; k>j; k--)
+				{
+					nums1[k] = nums1[k - 1];
+				}
+				nums1[j] = nums2[i];
+				m++;
+				break;
+			}
+
+			if (nums2[i] >= nums1[m - 1])
+			{
+				nums1[m] = nums2[i];
+				m++;
+				break;
+			}
+		}
+	}
 }
