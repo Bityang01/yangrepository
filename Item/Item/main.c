@@ -3310,7 +3310,7 @@ int main()
 }*/
 
 //顺序栈
-#include<stdio.h>
+/*#include<stdio.h>
 #define MAXSIZE 3
 
 typedef struct{
@@ -3369,4 +3369,109 @@ int main()
 			Push(&St, num);
 		}
 	}
+}*/
+
+
+#include<stdio.h>
+#define MAXQSIZE 100
+typedef struct {
+	char name[20];
+	char sex;
+}Person;
+
+typedef struct {
+	Person *base;
+	int fronter;
+	int rear;
+}SqQueue;
+ 
+void InitQueue(SqQueue *Q)	//初始化
+{
+	Q->base = (SqQueue*)malloc(sizeof(SqQueue)*MAXQSIZE);
+	if (!Q->base)
+	{
+		return;
+	}
+	Q->fronter = Q->rear = 0;
+}
+
+void EnQueue(SqQueue *Q, Person e)		//入队
+{
+	if (((Q->rear+1) % MAXQSIZE )== Q->fronter)
+		return;
+	Q->base[Q->rear] = e;
+	Q->rear = (Q->rear + 1) % MAXQSIZE;
+}
+
+Person DeQueue(SqQueue *Q)		//出队
+{
+	if (Q->fronter == Q->rear)
+		return;
+	Person tmp;
+	tmp = Q->base[Q->fronter];
+	Q->fronter = (Q->fronter + 1) % MAXQSIZE;
+	return tmp;
+}
+
+int QueueEmpty(SqQueue *Q)		//判空
+{
+	if ((Q->fronter) == (Q->rear)){
+		return 1;
+	}
+	else{
+		return 0;
+	}
+}
+
+Person GetHead(SqQueue *Q)			//得到头
+{
+	if (Q->fronter != Q->rear)
+	{
+		return Q->base[Q->fronter];
+	}
+}
+
+void DancerPartner(Person dancer[], int num)
+{
+	SqQueue Mdancers, Fdencers;
+	Person p;
+	InitQueue(&Mdancers);
+	InitQueue(&Fdencers);
+	for (int i = 0; i < num; i++)
+	{
+		p = dancer[i];
+		if (p.sex == 'F')
+		{
+			EnQueue(&Fdencers,p);
+		}
+		else{
+			EnQueue(&Mdancers, p);
+		}
+		printf("The dancing partners are:\n");
+		while ((!QueueEmpty(&Fdencers)) && (!QueueEmpty(&Mdancers)))
+		{
+			Person Fper = DeQueue(&Fdencers);
+			printf("%s  ", Fper.name);
+			Person Mper = DeQueue(&Mdancers);
+			printf("%s  ", Mper.name);
+			printf("\n");
+		}
+		//实现输出队头女士和男士的姓名
+		if (!QueueEmpty(&Fdencers))
+		{
+			p = GetHead(&Fdencers);
+			printf("The first women to get a partner is:%s\n", p.name);
+		}
+		else{
+			if(!QueueEmpty(&Mdancers)){
+				p = GetHead(&Mdancers);
+				printf("The first men to get a partner is:%s\n", p.name);
+			}
+		}
+	}
+}
+int main()
+{
+	Person dancer[5] = { {"赵女", 'F'}, {"赵男",'M'}, {"张女",'F'}, {"张男",'M'}, {"杨女",'F'} };
+	DancerPartner(dancer, 5);
 }
