@@ -3478,7 +3478,7 @@ int main()
 
 
 
-void merge(int* nums1, int nums1Size, int m, int* nums2, int nums2Size, int n){
+/*void merge(int* nums1, int nums1Size, int m, int* nums2, int nums2Size, int n){
 	for (int i = 0; i<nums2Size; i++)
 	{
 		for (int j = 0; j<m; j++)
@@ -3504,6 +3504,27 @@ void merge(int* nums1, int nums1Size, int m, int* nums2, int nums2Size, int n){
 				nums1[m] = nums2[i];
 				m++;
 				break;
+			}
+		}
+	}
+}*/
+
+
+//leetcode合并两个有序数组
+void merge(int* nums1, int nums1Size, int m, int* nums2, int nums2Size, int n){
+	int count = 0;
+	for (int i = nums1Size - 1; i >= 0; i--){
+		if (count != n){
+			nums1[i] = nums2[count];
+			count++;
+		}
+	}
+	for (int j = 0; j<nums1Size; j++){
+		for (int k = nums1Size - 1; k>j; k--){
+			if (nums1[k]<nums1[k - 1]){
+				nums1[k] = nums1[k] ^ nums1[k - 1];
+				nums1[k - 1] = nums1[k] ^ nums1[k - 1];
+				nums1[k] = nums1[k] ^ nums1[k - 1];
 			}
 		}
 	}
