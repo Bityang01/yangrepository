@@ -3511,7 +3511,7 @@ int main()
 
 
 //leetcode合并两个有序数组
-void merge(int* nums1, int nums1Size, int m, int* nums2, int nums2Size, int n){
+/*void merge(int* nums1, int nums1Size, int m, int* nums2, int nums2Size, int n){
 	int count = 0;
 	for (int i = nums1Size - 1; i >= 0; i--){
 		if (count != n){
@@ -3528,4 +3528,43 @@ void merge(int* nums1, int nums1Size, int m, int* nums2, int nums2Size, int n){
 			}
 		}
 	}
+}*/
+
+
+//leetcode删除有序链表中的重复元素
+/**
+* Definition for singly-linked list.
+* struct ListNode {
+*     int val;
+*     struct ListNode *next;
+* };
+*/
+
+struct ListNode* deleteDuplicates(struct ListNode* head){
+	struct ListNode* ptr = head;
+	struct ListNode* pCur = head;
+	while (pCur != NULL)
+	{
+		while (pCur != NULL&&ptr->val == pCur->val)
+		{
+			pCur = pCur->next;
+		}
+		ptr->next = pCur;
+		ptr = pCur;
+		if (pCur == NULL){
+			break;
+		}
+		pCur = pCur->next;
+		/*if(pCur->val==pCur->next->val)
+		{
+		while(ptr->val==pCur->next->val)
+		{
+		pCur=pCur->next;
+		}
+		ptr=pCur;
+		}
+		ptr=pCur;
+		pCur=pCur->next;*/
+	}
+	return head;
 }
