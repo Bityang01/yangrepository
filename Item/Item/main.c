@@ -3540,7 +3540,7 @@ int main()
 * };
 */
 
-struct ListNode* deleteDuplicates(struct ListNode* head){
+/*struct ListNode* deleteDuplicates(struct ListNode* head){
 	struct ListNode* ptr = head;
 	struct ListNode* pCur = head;
 	while (pCur != NULL)
@@ -3565,6 +3565,40 @@ struct ListNode* deleteDuplicates(struct ListNode* head){
 		}
 		ptr=pCur;
 		pCur=pCur->next;*/
+	/*}
+	return head;
+}*/
+
+
+
+/**
+* Definition for singly-linked list.
+* struct ListNode {
+*     int val;
+*     struct ListNode *next;
+* };
+*/
+
+//leetcodeÒÆ³ıÁ´±íÔªËØ
+struct ListNode* removeElements(struct ListNode* head, int val){
+	if (head == NULL){
+		return NULL;
+	}
+	struct ListNode* prev = head;
+	struct ListNode* cur = head->next;
+	while (cur != NULL){
+		if (cur->val == val){
+			prev->next = cur->next;
+			cur = cur->next;
+		}
+		else{
+			prev = cur;
+			cur = cur->next;
+		}
+	}
+	if (head->val == val)
+	{
+		head = head->next;
 	}
 	return head;
 }
