@@ -3580,7 +3580,7 @@ int main()
 */
 
 //leetcode移除链表元素
-struct ListNode* removeElements(struct ListNode* head, int val){
+/*struct ListNode* removeElements(struct ListNode* head, int val){
 	if (head == NULL){
 		return NULL;
 	}
@@ -3601,4 +3601,49 @@ struct ListNode* removeElements(struct ListNode* head, int val){
 		head = head->next;
 	}
 	return head;
+}*/
+
+
+
+
+
+
+/**
+* Definition for singly-linked list.
+* struct ListNode {
+*     int val;
+*     struct ListNode *next;
+* };
+*/
+
+//leetcode回文链表
+bool isPalindrome(struct ListNode* head){
+	if (head == NULL || head->next == NULL){
+		return true;
+	}
+	struct ListNode* fast = head;
+	struct ListNode* slow = head;
+	while (fast != NULL&&fast->next != NULL){
+		fast = fast->next->next;
+		slow = slow->next;
+	}
+	struct ListNode* cur = slow;
+	struct ListNode* curNext = NULL;
+	while (cur != NULL){
+		curNext = cur->next;
+		cur->next = slow;
+		slow = cur;
+		cur = curNext;
+	}
+	while (slow != head&&slow != NULL){
+		if (slow->val != head->val){
+			return false;
+		}
+		head = head->next;
+		if (head == slow){
+			return true;
+		}
+		slow = slow->next;
+	}
+	return true;
 }
