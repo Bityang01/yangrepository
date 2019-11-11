@@ -3472,7 +3472,7 @@ void DancerPartner(Person dancer[], int num)
 }
 int main()
 {
-	Person dancer[5] = { {"赵女", 'F'}, {"赵男",'M'}, {"张女",'F'}, {"张男",'M'}, {"杨女",'F'} };
+	Person dancer[5] = { {"女1", 'F'}, {"男1",'M'}, {"女2",'F'}, {"男2",'M'}, {"女3",'F'} };
 	DancerPartner(dancer, 5);
 }*/
 
@@ -3617,7 +3617,7 @@ int main()
 */
 
 //leetcode回文链表
-bool isPalindrome(struct ListNode* head){
+/*bool isPalindrome(struct ListNode* head){
 	if (head == NULL || head->next == NULL){
 		return true;
 	}
@@ -3646,4 +3646,38 @@ bool isPalindrome(struct ListNode* head){
 		slow = slow->next;
 	}
 	return true;
+}*/
+
+
+class Solution {
+	public int[] intersection(int[] nums1, int[] nums2) {
+		int[] array = new int[((nums1.length>nums2.length) ? nums1.length : nums2.length)];
+		int ret = 0;
+		for (int i = 0; i<nums1.length; i++){
+			for (int j = 0; j<nums2.length; j++){
+				if (nums1[i] == nums2[j]){
+					array[ret] = nums1[i];
+					ret++;
+					break;
+				}
+			}
+		}
+		int count = 0;
+		int i = 0;
+		while (i != (ret - 1)){
+			for (int j = i + 1; j<ret; j++){
+				if (array[i] == array[j]){
+					for (int k = j; k<ret - 1; k++){
+						array[k] = array[k + 1];
+					}
+					ret--;
+					count = 1;
+				}
+			}
+			if (count == 0){
+				i++;
+			}
+		}
+		return arr;
+	}
 }
