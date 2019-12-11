@@ -1762,7 +1762,7 @@ int main()
 
 //顺序栈
 /*#include<stdio.h>
-#include<stdlib.h>
+#include<stdlib.h> 
 #include<conio.h>
 #define maxsize 20
 #define datatype char
@@ -3649,7 +3649,7 @@ int main()
 }*/
 
 
-class Solution {
+/*class Solution {
 	public int[] intersection(int[] nums1, int[] nums2) {
 		int[] array = new int[((nums1.length>nums2.length) ? nums1.length : nums2.length)];
 		int ret = 0;
@@ -3680,4 +3680,206 @@ class Solution {
 		}
 		return arr;
 	}
+}*/
+
+/*#include<stdio.h>
+#define MaxSize 100
+
+typedef struct {		//顺序栈的结构，注意是int
+	int* base;
+	int* top;
+	int StackSize;
+}SqStack;
+
+void InitStack(SqStack *s){		//顺序栈的初始化
+	s->base = (int*)malloc(sizeof(int)*MaxSize);
+	s->top = s->base;
+	s->StackSize = MaxSize;
+}
+
+void pushStack(SqStack *s, int val){		////顺序栈的入栈
+	*(s->top) = val;
+	s->top++;
+}
+
+int Pop(SqStack *s){		//顺序栈的出栈
+	int ret = 0;
+	if (s->base == s->top){
+		return -1;
+	}
+	s->top--;
+	ret = *(s->top);
+	return ret;
+}
+
+
+
+int main()
+{
+	SqStack s;
+	InitStack(&s);
+	pushStack(&s, 1);
+	pushStack(&s, 2);
+	pushStack(&s, 3);
+	pushStack(&s, 4);
+	pushStack(&s, 5);
+	printf("%d\n", Pop(&s));
+	printf("%d\n", Pop(&s));
+	printf("%d\n", Pop(&s));
+	printf("%d\n", Pop(&s));
+}*/
+
+
+/*#include<stdio.h>
+#define MaxSize 100
+
+typedef struct {	//队列的结构
+	int* base;
+	int* front;
+	int* rear;
+	int SqQueueSize;
+}SqQueue;
+
+void Init(SqQueue* q){	//队列的初始化
+	q->front = q->rear = (int *)malloc(sizeof(int)*MaxSize);
+	q->SqQueueSize = MaxSize;
+}
+
+void Push(SqQueue * q, int val){		//队列的入队
+	if (q->SqQueueSize == 0){
+		return 0;
+	}
+	*(q->rear )= val;
+	q->rear++;
+	if (q->SqQueueSize == 0){	//循环队列的实现也可以用这样的方式
+		q->rear = q->base;
+	}
+	q->SqQueueSize--;
+}
+
+int Pop(SqQueue* q){		//队列的出队
+	if (q->front == q->rear){
+		return -1;
+	}
+	int ret = *(q->front);
+	q->front++;
+	q->SqQueueSize++;
+	return ret;
+}
+
+int main()
+{
+	SqQueue q;
+	Init(&q);
+	Push(&q, 1);
+	Push(&q, 2);
+	Push(&q, 3);
+	Push(&q, 4);
+	Push(&q, 5);
+	Push(&q, 6);
+	printf("%d\n", Pop(&q));
+	printf("%d\n", Pop(&q));
+	printf("%d\n", Pop(&q));
+	printf("%d\n", Pop(&q));
+}*/
+
+/*#include<stdio.h>
+
+typedef struct StackNode{	//链栈的结构
+	int data;
+	struct StackNode* next;
+}StackNode;
+
+void InitStack(StackNode* S){		//链栈的初始化
+	S = NULL;
+}
+
+void Push(StackNode* S, int val){		//链栈的入栈
+	StackNode* p = (StackNode*)malloc(sizeof(StackNode));
+	p->data = val;
+	p->next = S;
+	S = p;
+}
+
+int Pop(StackNode* S){		//链栈的出栈
+	int ret = 0;
+	if (S == NULL){
+		return -1;
+	}
+	ret = S->data;
+	S = S->next;
+	return ret;
+}
+
+int main()
+{
+	StackNode S;
+	InitStack(&S);
+	Push(&S, 1);
+	Push(&S, 2);
+	Push(&S, 3);
+	Push(&S, 4);
+	Push(&S, 5);
+	printf("%d\n", Pop(&S));
+	printf("%d\n", Pop(&S));
+	printf("%d\n", Pop(&S));
+	printf("%d\n", Pop(&S));
+}*/
+
+#include<stdio.h>
+
+typedef struct BiTNode{
+	int data;
+	struct BiTNode* lchild, *rchild;
+}BiTNode,*BiTree;
+
+
+void Create(BiTree Tree){	//创建二叉树
+	int a = 0;
+	scanf_s("%d", &a);
+	if (a == '#')
+		Tree = NULL;
+	else{
+		Tree = (BiTree)malloc(sizeof(BiTNode));
+		Tree->data = a;
+		Create(Tree->lchild);
+		Create(Tree->rchild);
+	}
+}
+
+void InOrder(BiTree Tree){	//先序遍历
+	if (Tree){
+		InOrder(Tree->lchild);
+		printf("%d  ", Tree->data);
+		InOrder(Tree->rchild);
+	}
+}
+
+void preOrder(BiTree Tree)//前序遍历
+{
+	if (Tree != NULL)
+	{
+		printf("%d  ", Tree->data);
+		preOrder(Tree->lchild);
+		preOrder(Tree->rchild);
+	}
+	return;
+}
+
+void PostOrder(BiTree Tree)//后序遍历
+{
+	if (Tree != NULL)
+	{
+		PostOrder(Tree->lchild);
+		PostOrder(Tree->rchild);
+		printf("%d  ", Tree->data);
+	}
+	return;
+}
+
+int main()
+{
+	BiTNode Tree;
+	Create(&Tree);
+	InOrder(&Tree);
 }
